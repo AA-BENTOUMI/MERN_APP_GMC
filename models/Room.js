@@ -6,7 +6,11 @@ const roomSchema = new Schema({
   type: { type: String, required: true },
   estimation: { type: String, required: true },
   description: { type: String },
- 
+ status: {
+    type: String,
+    enum: ["en attente", "accepter", "refuser"],
+    default: "en attente",
+  },
 });
 
 module.exports = Room = model("room", roomSchema);

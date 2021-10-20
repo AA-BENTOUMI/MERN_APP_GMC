@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllSellers,getAllBuyers, deleteUser } = require("../controllers/admin.controllers");
+const { getAllSellers,getAllBuyers, deleteUser, ChangeStatus, getAllRooms, deleteRoom } = require("../controllers/admin.controllers");
 
 
 const router = express.Router()
@@ -10,5 +10,10 @@ router.get("/allbuyers",getAllBuyers)
 //delete user
 router.delete("/allsellers/:id",deleteUser)
 router.delete("/allbuyers/:id",deleteUser)
-
+// get all rooms
+router.get("/allRooms",getAllRooms)
+// delete room
+router.delete("/deleteRoom/:id",deleteRoom)
+// change room status
+router.put("/changeStatus/:id", ChangeStatus);
 module.exports = router
