@@ -10,9 +10,9 @@ router.post("/register",registerVlidation(), validation,Register)
 // login
 router.post("/login",loginValiation(), validation,Login)
 // get
-router.get("/",isAuth,isSeller,(req,res)=>{
-    res.send({user:req.user})
-})
+// router.get("/",isAuth,isSeller,(req,res)=>{
+//     res.send({user:req.user})
+// })
 
 module.exports = router
 

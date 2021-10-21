@@ -10,6 +10,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
     enum: ["buyer", "seller", "admin"],
+    default: "buyer",
   },
 });
 
