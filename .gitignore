@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /tmpnodejsnpm-cache
+/uploads
 # testing
 /coverage
 
