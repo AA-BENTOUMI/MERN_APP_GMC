@@ -1,15 +1,15 @@
 const Room=require("../models/Room")
 
 // create Room
-exports.addeRoom =async(req,res)=>{
-    try {
-        const newRomm=new Room({...req.body,id_seller:req.user._id})
-        await newRomm.save()
-    res.send({msg:"salle créé avec succ",room:newRomm})
-    } catch (error) {
-    res.send({errors:[{msg:"échéc création du salle"}]})       
-    }
-}
+// exports.addeRoom =async(req,res)=>{
+//     try {
+//         const newRomm=new Room({...req.body,id_seller:req.user._id})
+//         await newRomm.save()
+//     res.send({msg:"salle créé avec succ",room:newRomm})
+//     } catch (error) {
+//     res.send({errors:[{msg:"échéc création du salle"}]})       
+//     }
+// }
 // get my Rooms
 exports.myRooms = async (req, res) => {
   try {
@@ -23,9 +23,9 @@ exports.myRooms = async (req, res) => {
 // participate rooms (buyers)
 exports.participate = async (req, res) => {
   try { 
-    // find rooms with user id 
+    // find rooms with user id and push buyer id
     let result=await Room.findByIdAndUpdate(req.params.id,{id_buyer:req.user.id}).populate("id_seller id_buyer");
-    res.send( {msg:"liste des salles",result} );
+    res.send( {msg:"participer avec succ",result} );
   } catch (error) {
     res.status(400).send({ msg: "échec participation", error });
   }
