@@ -45,7 +45,11 @@ router.post('/addroom',isAuth,upload.single('images'),async(req,res)=>{
            res.send({msg:"choisie une image"})
       }
       else{ console.log(req.file)
-        const newRomm=new Room({...req.body,id_seller:req.user._id,images:req.file.filename})
+        const newRomm=new Room({
+          ...req.body,
+          id_seller:req.user._id,
+          images:req.file.filename,
+        date:new Date()})
         await newRomm.save()
     res.send({msg:"salle créé avec succ",room:newRomm})}
     } catch (error) {

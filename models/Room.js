@@ -12,10 +12,10 @@ const roomSchema = new Schema({
   },
   roomName: { type: String, required: true },
   categorie: { type: String, required: true },
-  type: { type: String, required: true },
   estimation: { type: String, required: true },
   description: { type: String },
-    images:{type: String},
+  images:{type: String},
+  date :{type: Date},
  status: {
     type: String,
     enum: ["en attente", "accepter", "refuser"],
