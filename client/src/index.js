@@ -2,9 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import {Provider} from "react-redux"
+import { store } from "./JS/store/sotre";
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  
   document.getElementById("root")
 );
 
