@@ -61,6 +61,11 @@ function NavBar(props) {
       icon: <BookIcon className="text-white" />
     },
     {
+      link: "/profile",
+      name: "profile",
+      icon: <HowToRegIcon className="text-white" />
+    },
+    {
       name: "Register",
       onClick: openRegisterDialog,
       icon: <HowToRegIcon className="text-white" />
@@ -69,7 +74,8 @@ function NavBar(props) {
       name: "Login",
       onClick: openLoginDialog,
       icon: <LockOpenIcon className="text-white" />
-    }
+    },
+    
   ];
   return (
     <div className={classes.root}>

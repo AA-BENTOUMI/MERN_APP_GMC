@@ -1,28 +1,41 @@
 import axios from "axios";
-import { LOGIN_USER,REGISTER_USER } from "../constants/user";
+import { CURRENT_USER, FAIL_USER, LOAD_USER, LOGIN_USER,REGISTER_USER } from "../constants/user";
 
-export const register = (newUser, history) => async (dispatch) => {
+export const register = (newUser, history,onClose) => async (dispatch) => {
   dispatch({ type: LOAD_USER });
 
   try {
     const result = await axios.post("/api/user/register", newUser);
 
     dispatch({ type: REGISTER_USER, payload: result.data }); //msg , token , user
-    alert(result.data.msg);
+    onClose()
     history.push("/");
   } catch (error) {
     dispatch({ type: FAIL_USER, payload: error.response.data.errors });
   }
 };
-export const register = (user, history) => async (dispatch) => {
+export const login = (user, history,onClose) => async (dispatch) => {
   dispatch({ type: LOAD_USER });
 
   try {
     const result = await axios.post("/api/user/login", user);
-
-    dispatch({ type: LOGIN_USER, payload: result.data }); //msg , token , user
-    alert(result.data.msg);
+    dispatch({ type: LOGIN_USER, payload: result.data }); //msg /token , user
+    onClose()
     history.push("/");
+  } catch (error) {
+    dispatch({ type: FAIL_USER, payload: error.response.data.errors });
+  }
+};
+export const currentUser = () => async (dispatch) => {
+  dispatch({ type: LOAD_USER });
+  const config = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+  try {
+    const result = await axios.get("/api/user/current", config);
+    dispatch({ type: CURRENT_USER, payload: result.data });
   } catch (error) {
     dispatch({ type: FAIL_USER, payload: error.response.data.errors });
   }

@@ -40,7 +40,6 @@ function ChangePassword(props) {
       open
       hideBackdrop
       onClose={onClose}
-      disableBackdropClick={isLoading}
       disableEscapeKeyDown={isLoading}
       maxWidth="xs"
     >

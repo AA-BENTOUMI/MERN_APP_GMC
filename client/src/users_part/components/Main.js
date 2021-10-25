@@ -130,7 +130,7 @@ function Main(props) {
       <Routing
         blogPosts={blogPosts}
         selectHome={selectHome}
-        selectBlog={selectBlog}
+        selectBlog={selectBlog}z
       />
       <Footer />
     </div>

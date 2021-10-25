@@ -6,13 +6,13 @@ const isSeller =require("../middlewares/isSeller")
 const router = express.Router()
 
 // register
-router.post("/register",registerVlidation(), validation,Register)
+router.post("/register",Register)
 // login
-router.post("/login",loginValiation(), validation,Login)
+router.post("/login",Login)
 // get
-// router.get("/",isAuth,isSeller,(req,res)=>{
-//     res.send({user:req.user})
-// })
+router.get("/current", isAuth, (req, res) => {
+  res.send({user:req.user});
+});
 
 module.exports = router
 

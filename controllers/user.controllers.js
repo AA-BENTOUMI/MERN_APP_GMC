@@ -26,17 +26,18 @@ try {
    const {email,password}=req.body
     const findUser= await User.findOne({email}) 
  if(!findUser){
-    return res.status(400).send({errors:[{msg:"e-mail ou mot de passe incorrect"}]})
+     res.status(400).send({errors:[{msg:"e-mail ou mot de passe incorrect"}]})
+     return;
  }
- const testPassword=bcrypt.compareSync(password, findUser.password)
+ const testPassword=bcrypt.compare(password, findUser.password)
  if(!testPassword){
-    return res.send({errors:[{msg:"e-mail ou mot de passe incorrect"}]})
+     res.send({errors:[{msg:"e-mail ou mot de passe incorrect"}]})
+     return;
  }
  const token=jwt.sign({
   _id: findUser._id
 }, process.env.SECRET_KEY, { expiresIn: '1h' });
-
- return res.send({msg:"connexion réussie",user:findUser,token})
+  res.send({msg:"connexion réussie",user:findUser,token})
 } catch (error) {
     res.send({errors:[{msg:"échec connexion"}]}) 
 }
