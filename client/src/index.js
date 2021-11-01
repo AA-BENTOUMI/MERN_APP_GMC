@@ -1,16 +1,20 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import App from "./App";
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import {Provider} from "react-redux"
+import ReactDOM from "react-dom";
+import { BrowserRouter, } from "react-router-dom";
+
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "assets/styles/tailwind.css";
+import { Provider } from "react-redux";
 import { store } from "./JS/store/sotre";
 
+
+
 ReactDOM.render(
+  <BrowserRouter>
   <Provider store={store}>
-    <App />
+     <App />
   </Provider>,
-  
+  </BrowserRouter>,
   document.getElementById("root")
 );
-
-serviceWorkerRegistration.register();

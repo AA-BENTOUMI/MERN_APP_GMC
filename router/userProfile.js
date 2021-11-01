@@ -7,7 +7,7 @@ const router = express.Router()
 // get user profile
 router.get("/profile/:id",getProfile)
 // edit profile
-router.put("/profile/:id",registerVlidation(), validation,editProfile)
+router.put("/profile/:id",editProfile)
 // delete Profile
 router.delete("/profile/:id",deleteProfile)
 

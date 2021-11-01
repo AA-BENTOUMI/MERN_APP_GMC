@@ -36,7 +36,7 @@ try {
  }
  const token=jwt.sign({
   _id: findUser._id
-}, process.env.SECRET_KEY, { expiresIn: '1h' });
+}, process.env.SECRET_KEY, { expiresIn: '12h' });
   res.send({msg:"connexion réussie",user:findUser,token})
 } catch (error) {
     res.send({errors:[{msg:"échec connexion"}]}) 

@@ -1,19 +1,18 @@
-import React, { Fragment, Suspense, lazy, useEffect } from "react";
-import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import theme from "./theme";
-import GlobalStyles from "./GlobalStyles";
-import Pace from "./shared/components/Pace";
-import Profile from "./users_part/components/profile/Profile";
+import React, {useEffect } from "react";
+// layouts
+import { Switch, Route } from "react-router-dom";
 import { currentUser } from "./JS/actions/user";
 import { useDispatch } from "react-redux";
+import Admin from "layouts/Admin.js";
+import Auth from "layouts/Auth.js";
 
-const LoggedInComponent = lazy(() => import("./admin_part/components/Main"));
+// views without layouts
 
-const LoggedOutComponent = lazy(() => import("./users_part/components/Main"));
-
+import Landing from "views/Landing.js";
+import Profile from "views/Profile.js";
+import Index from "views/Index.js";
 function App() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -22,24 +21,19 @@ function App() {
     }
   }, [dispatch, token]);
   return (
-    <BrowserRouter>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <GlobalStyles />
-        <Pace color={theme.palette.primary.light} />
-        <Suspense fallback={<Fragment />}>
-          <Switch>
-            <Route path="/c">
-              <LoggedInComponent />
-            </Route>
-              <Route path="/profile" component={Profile} />
-            <Route>
-              <LoggedOutComponent />
-            </Route>
-          </Switch>
-        </Suspense>
-      </MuiThemeProvider>
-    </BrowserRouter>
+    <div className="App">
+      <Switch>
+      {/* add routes with layouts */}
+      <Route path="/admin" component={Admin} />
+      <Route path="/auth" component={Auth} />
+      {/* add routes without layouts */}
+      <Route path="/landing" exact component={Landing} />
+      <Route path="/profile" exact component={Profile} />
+      <Route path="/" exact component={Index} />
+      {/* add redirect for first page */}
+      {/* <Redirect from="*" to="/" /> */}
+    </Switch>
+    </div>
   );
 }
 
