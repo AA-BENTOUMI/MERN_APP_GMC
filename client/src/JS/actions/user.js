@@ -37,11 +37,13 @@ export const currentUser = () => async (dispatch) => {
   } catch (error) {
     dispatch({ type: FAIL_USER, payload: error.response.data.errors });
   }
-// export const editUser = (id, user) => async (dispatch) => {
-//   try {
-//     await axios.put(`/api/user/profile/${id}`, user);
-//     // dispatch(getAllPersons());
-//   } catch (error) {
-//      dispatch({ type: FAIL_USER, payload: error.response.data.errors });
-//   }
 };
+export const editUser = (id, user) => async (dispatch) => {
+  try {
+    await axios.put(`/api/user/profile/${id}`, user);
+    // dispatch({ type: CURRENT_USER});
+    // history.push("/profile");
+  } catch (error) {
+     dispatch({ type: FAIL_USER, payload: error.response.data.errors });
+  }
+}

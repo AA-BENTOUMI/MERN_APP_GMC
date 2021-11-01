@@ -9,8 +9,9 @@ import Auth from "layouts/Auth.js";
 // views without layouts
 
 import Landing from "views/Landing.js";
-import Profile from "views/Profile.js";
+import Profile from "views/profile/Profile";
 import Index from "views/Index.js";
+import EditProfile from "views/profile/EditProfile";
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
@@ -27,8 +28,9 @@ function App() {
       <Route path="/admin" component={Admin} />
       <Route path="/auth" component={Auth} />
       {/* add routes without layouts */}
-      <Route path="/landing" exact component={Landing} />
-      <Route path="/profile" exact component={Profile} />
+      <Route path="/landing"  component={Landing} />
+      <Route path="/profile"  component={Profile} />
+      <Route path="/editprofile/:id" component={EditProfile} />
       <Route path="/" exact component={Index} />
       {/* add redirect for first page */}
       {/* <Redirect from="*" to="/" /> */}

@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../../JS/actions/user";
 import { Link } from "react-router-dom";
 import {  useHistory } from "react-router-dom";
@@ -8,7 +8,7 @@ export default function Login() {
   const [user, setUser] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
   const history = useHistory();
-  const errors = useSelector((state) => state.userReducer.errors);
+  // const errors = useSelector((state) => state.userReducer.errors);
 
 const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });

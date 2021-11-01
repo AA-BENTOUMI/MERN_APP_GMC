@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { register } from "../../JS/actions/user";
 import {  useHistory } from "react-router-dom";
 export default function Register() {
@@ -11,7 +11,7 @@ export default function Register() {
   });
   const history = useHistory();
   const dispatch = useDispatch();
-  const errors = useSelector((state) => state.userReducer.errors);
+  // const errors = useSelector((state) => state.userReducer.errors);
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -21,7 +21,7 @@ export default function Register() {
       name: "",
       email: "",
       password: "",
-      role: "buyer",
+      role: "",
     });
   };
 
@@ -76,7 +76,7 @@ export default function Register() {
                       Name
                     </label>
                     <input
-                      type="email"
+                      type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Name"
                       name="name"
@@ -118,7 +118,12 @@ export default function Register() {
 
                     />
                   </div>
-
+                   <select defaultValue="buyer"
+                   name="role"
+                   onChange={handleChange}>
+            <option value="buyer">Buyer</option>
+            <option value="seller">Seller</option>
+          </select>
                   <div>
                     <label className="inline-flex items-center cursor-pointer">
                       <input
