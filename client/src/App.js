@@ -12,6 +12,8 @@ import Landing from "views/Landing.js";
 import Profile from "views/profile/Profile";
 import Index from "views/Index.js";
 import EditProfile from "views/profile/EditProfile";
+import PrivateRoute from "router/PrivateRoute";
+import Navbar from "components/Navbars/IndexNavbar";
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
@@ -23,14 +25,15 @@ function App() {
   }, [dispatch, token]);
   return (
     <div className="App">
+      <Navbar/>
       <Switch>
       {/* add routes with layouts */}
       <Route path="/admin" component={Admin} />
       <Route path="/auth" component={Auth} />
       {/* add routes without layouts */}
       <Route path="/landing"  component={Landing} />
-      <Route path="/profile"  component={Profile} />
-      <Route path="/editprofile/:id" component={EditProfile} />
+      <PrivateRoute path="/profile"  component={Profile} />
+      <PrivateRoute path="/editprofile/:id" component={EditProfile} />
       <Route path="/" exact component={Index} />
       {/* add redirect for first page */}
       {/* <Redirect from="*" to="/" /> */}

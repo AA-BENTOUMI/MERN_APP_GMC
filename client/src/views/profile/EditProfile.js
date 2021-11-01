@@ -47,7 +47,7 @@ const handleUser = (e) => {
                 </div>
                 <div className="row mt-3">
                     <div className="col-md-6"><input type="text" name="email" className="form-control" defaultValue={user.email} onChange={handleChange}/></div>
-                    <div className="col-md-6"><input maxlength="8" type="tel" name="phone" className="form-control" defaultValue={user.phone} placeholder="Phone number" onChange={handleChange}/></div>
+                    <div className="col-md-6"><input maxLength="8" type="tel" name="phone" className="form-control" defaultValue={user.phone} placeholder="Phone number" onChange={handleChange}/></div>
                 </div>
                 <div className="row mt-3">
                     <div className="col-md-6"><input type="text" name="adress" className="form-control" placeholder="adress" defaultValue={user.adress} onChange={handleChange}/></div>

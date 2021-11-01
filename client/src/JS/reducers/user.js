@@ -1,4 +1,4 @@
-import { FAIL_USER, LOAD_USER, LOGIN_USER, REGISTER_USER ,CURRENT_USER} from "../constants/user"
+import { FAIL_USER, LOAD_USER, LOGIN_USER, REGISTER_USER ,CURRENT_USER, LOGOUT_USER} from "../constants/user"
 
 
 const initialState={
@@ -18,7 +18,11 @@ const userReducer=(state=initialState,{type,payload})=>{
             return{...state,isLoad:false,user:payload.user,isAuth:true }
         case FAIL_USER:
             return{...state,errors:payload.errors,isLoad:false}
-       case CURRENT_USER:return {...state,loadUser: false, user: payload.user, isAuth: true,errors: [],};
+       case CURRENT_USER:
+           return {...state,isLoad: false, user: payload.user, isAuth: true,errors: [],};
+       case LOGOUT_USER:
+           localStorage.removeItem("token")
+           return {user:null,errors:null,isLoad:false,isAuth:false};
         default:
             return state
     }

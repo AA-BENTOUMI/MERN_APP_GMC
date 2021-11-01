@@ -1,14 +1,14 @@
 const User = require("../models/User");
 
 // get profile
-exports.getProfile=async(req,res)=>{
-    try {
-    const userProfile=await User.find({_id:req.params.id})
-    res.status(200).send(userProfile)
-} catch (error) {
-    res.send({errors:[{msg:"profile introuvable"}]})
-}
-}
+// exports.getProfile=async(req,res)=>{
+//     try {
+//     const userProfile=await User.find({_id:req.params.id})
+//     res.status(200).send(userProfile)
+// } catch (error) {
+//     res.send({errors:[{msg:"profile introuvable"}]})
+// }
+// }
 // edit profile
 exports.editProfile=async(req,res)=>{
     try {

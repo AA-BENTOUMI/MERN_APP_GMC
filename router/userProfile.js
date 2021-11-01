@@ -5,7 +5,7 @@ const isAuth  = require("../middlewares/isAuth");
 const router = express.Router()
 
 // get user profile
-router.get("/profile/:id",getProfile)
+// router.get("/profile/:id",getProfile)
 // edit profile
 router.put("/profile/:id",editProfile)
 // delete Profile

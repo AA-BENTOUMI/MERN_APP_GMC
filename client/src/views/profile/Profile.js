@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Navbar from "components/Navbars/AuthNavbar.js";
+import Navbar from "components/Navbars/IndexNavbar";
 import Footer from "components/Footers/Footer.js";
 import { Link } from "react-router-dom";
 
@@ -106,15 +106,15 @@ export default function Profile() {
                   </h3>
                   <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                     <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}
-                    Los Angeles, California
-                  </div>
-                  <div className="mb-2 text-blueGray-600 mt-10">
-                    <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
-                    {user.role}
+                    {user.adress}, {user.contry}
                   </div>
                   <div className="mb-2 text-blueGray-600">
                     <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
                     {user.email}
+                  </div>
+                  <div className="mb-2 text-blueGray-600 mt-10">
+                    <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
+                    {user.role}
                   </div>
                 </div>
                 <div className="mt-10 py-10 border-t border-blueGray-200 text-center">

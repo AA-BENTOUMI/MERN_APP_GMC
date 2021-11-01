@@ -1,12 +1,22 @@
 /*eslint-disable*/
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { logout } from "../../JS/actions/user";
+
 // components
 
 import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
 
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
+  const isAuth = useSelector(state => state.userReducer.isAuth)
+
+  const dispatch = useDispatch();
+const handeleLougout=(e)=>{
+  dispatch(logout())
+}
   return (
     <>
       <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
@@ -80,8 +90,14 @@ export default function Navbar(props) {
                   <span className="lg:hidden inline-block ml-2">Star</span>
                 </a>
               </li>
-
-              <li className="flex items-center">
+                {isAuth?
+                <Link to="/auth/login"
+                  className="bg-white text-blueGray-700 active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                  type="button"
+                  onClick={handeleLougout}
+                >
+                  <i className="fas fa-arrow-alt-circle-down"></i> Logout
+                </Link>:<li className="flex items-center">
                 <Link to="/auth/register"
                   className="bg-white text-blueGray-700 active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
@@ -94,8 +110,8 @@ export default function Navbar(props) {
                 >
                   <i className="fas fa-arrow-alt-circle-down"></i> Login
                 </Link>
-                
-              </li>
+              </li>}
+              
             </ul>
           </div>
         </div>
