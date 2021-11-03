@@ -39,21 +39,24 @@ function checkFileType(file, cb){
     cb('Error: Images Only!');
   }
 }
-router.post('/addroom',isAuth,upload.single('images'),async(req,res)=>{
+router.post('/addroom',upload.single('images'),async(req,res)=>{
     try {
         if(req.file == undefined){
            res.send({msg:"choisie une image"})
       }
       else{ console.log(req.file)
         const newRomm=new Room({
-          ...req.body,
-          id_seller:req.user._id,
+          roomName:req.body.roomName,
+          categorie:req.body.categorie,
+          estimation:req.body.estimation,
+          description:req.body.description,
           images:req.file.filename,
+          id_seller:req.body.id_seller,
         date:new Date()})
         await newRomm.save()
     res.send({msg:"salle créé avec succ",room:newRomm})}
     } catch (error) {
-        res.send(error)
+           res.send({errors:[{msg:"failed upload"}]}) 
     }
     
 });

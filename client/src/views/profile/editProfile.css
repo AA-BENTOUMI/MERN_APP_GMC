@@ -1,33 +1,33 @@
-body {
-  background: #ba68c8;
-}
+/* body {
+  background: #ba68c8 !important;
+} */
 
 .form-control:focus {
-  box-shadow: none;
-  border-color: #ba68c8;
+  box-shadow: none !important;
+  border-color: #ba68c8 !important;
 }
 
 .profile-button {
-  background: #ba68c8;
-  box-shadow: none;
-  border: none;
+  background: #ba68c8 !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 .profile-button:hover {
-  background: #682773;
+  background: #682773 !important;
 }
 
 .profile-button:focus {
-  background: #682773;
-  box-shadow: none;
+  background: #682773 !important;
+  box-shadow: none !important;
 }
 
 .profile-button:active {
-  background: #682773;
-  box-shadow: none;
+  background: #682773 !important;
+  box-shadow: none !important;
 }
 
 .back:hover {
-  color: #682773;
-  cursor: pointer;
+  color: #682773 !important;
+  cursor: pointer !important;
 }

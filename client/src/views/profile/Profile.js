@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Navbar from "components/Navbars/IndexNavbar";
 import Footer from "components/Footers/Footer.js";
 import { Link } from "react-router-dom";
 
@@ -11,7 +10,6 @@ export default function Profile() {
 
   return (
     <>
-      <Navbar transparent />
       { user ?
             (<main className="profile-page">
         <section className="relative block h-500-px">

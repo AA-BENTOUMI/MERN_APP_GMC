@@ -9,15 +9,15 @@ try {
  const {password}=req.body     
  const findUser= await User.findOne({email}) 
  if(findUser){
-    return res.status(400).send({errors:[{msg:"Cette adresse e-mail est déjà utilisée"}]})
+    return res.status(400).send({errors:[{msg:"This email address is already in use"}]})
  }
  const newUser=new User({...req.body})
  const hashedpassword = await bcrypt.hash(password, saltRounds);
     newUser.password = hashedpassword;
   await newUser.save()
- res.send({msg:"enregistrement a été effectué avec succès",user:newUser})
+ res.send({msg:"registration was successful",user:newUser})
 } catch (error) {
-    res.send({errors:[{msg:"enregistrement non éffectué"}]})
+    res.send({errors:[{msg:"failed registration"}]})
 }
 }
 // ***login function****
@@ -26,19 +26,19 @@ try {
    const {email,password}=req.body
     const findUser= await User.findOne({email}) 
  if(!findUser){
-     res.status(400).send({errors:[{msg:"e-mail ou mot de passe incorrect"}]})
+     res.status(400).send({errors:[{msg:"Incorrect email or password"}]})
      return;
  }
  const testPassword=bcrypt.compare(password, findUser.password)
  if(!testPassword){
-     res.send({errors:[{msg:"e-mail ou mot de passe incorrect"}]})
+     res.send({errors:[{msg:"Incorrect email or password"}]})
      return;
  }
  const token=jwt.sign({
   _id: findUser._id
 }, process.env.SECRET_KEY, { expiresIn: '1h' });
-  res.send({msg:"connexion réussie",user:findUser,token})
+  res.send({msg:"Successful connection",user:findUser,token})
 } catch (error) {
-    res.send({errors:[{msg:"échec connexion"}]}) 
+    res.send({errors:[{msg:"failed connection"}]}) 
 }
 }

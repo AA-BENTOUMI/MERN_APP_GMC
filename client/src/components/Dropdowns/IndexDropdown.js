@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { createPopper } from "@popperjs/core";
+import { useSelector } from "react-redux";
 
 const IndexDropdown = () => {
   // dropdown props
+    const user = useSelector((state) => state.userReducer.user);
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
@@ -18,7 +20,11 @@ const IndexDropdown = () => {
   };
   return (
     <>
-      <a
+      { user ?
+            (<i className="text-blueGray-400 fab fa fa-user text-lg leading-lg " />)
+      :null} 
+      { user ?
+            (<a
         className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
         href="#pablo"
         ref={btnDropdownRef}
@@ -27,8 +33,9 @@ const IndexDropdown = () => {
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
       >
-        Demo Pages
-      </a>
+        {user.name}
+      </a>)
+      :null} 
       <div
         ref={popoverDropdownRef}
         className={

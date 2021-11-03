@@ -12,7 +12,7 @@ const userReducer=(state=initialState,{type,payload})=>{
         case LOAD_USER:
             return{...state,isLoad:true}
         case REGISTER_USER:
-            return{...state,isLoad:false,user:payload.user,isAuth:true }
+            return{...state,isLoad:false,user:payload.user }
         case LOGIN_USER:
             localStorage.setItem("token", payload.token);
             return{...state,isLoad:false,user:payload.user,isAuth:true }
