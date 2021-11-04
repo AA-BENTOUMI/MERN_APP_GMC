@@ -1,15 +1,14 @@
 const Room=require("../models/Room")
 
-// create Room
-// exports.addeRoom =async(req,res)=>{
-//     try {
-//         const newRomm=new Room({...req.body,id_seller:req.user._id})
-//         await newRomm.save()
-//     res.send({msg:"salle créé avec succ",room:newRomm})
-//     } catch (error) {
-//     res.send({errors:[{msg:"échéc création du salle"}]})       
-//     }
-// }
+// get all Rooms
+exports.allRooms=async(req,res)=>{
+    try {
+    const allRooms=await Room.find()
+    res.status(200).send(allRooms)
+} catch (error) {
+    res.send({errors:[{msg:"probléme des salles"}]})
+}
+}
 // get my Rooms
 exports.myRooms = async (req, res) => {
   try {

@@ -4,7 +4,7 @@ require("dotenv").config();
 //*** middleware global
 const app = express();
 app.use(express.json())
-// app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static('uploads'));
 //**** connect DB
 connectDB();
 //************************************** */

@@ -15,6 +15,7 @@ import EditProfile from "views/profile/EditProfile";
 import PrivateRoute from "router/PrivateRoute";
 import Navbar from "components/Navbars/IndexNavbar";
 import AddRoom from "views/rooms/AddRoom";
+import RoomsList from "views/rooms/RoomsList";
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
@@ -36,6 +37,7 @@ function App() {
       <PrivateRoute path="/profile"  component={Profile} />
       <PrivateRoute path="/editprofile/:id" component={EditProfile} />
       <Route path="/addroom"  component={AddRoom} />
+      <Route path="/allrooms"  component={RoomsList} />
       <Route path="/" exact component={Index} />
       {/* add redirect for first page */}
       {/* <Redirect from="*" to="/" /> */}

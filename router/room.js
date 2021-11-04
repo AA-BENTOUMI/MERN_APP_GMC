@@ -1,5 +1,5 @@
 const express = require("express");
-const { addeRoom, myRooms, participate, participateRooms } = require("../controllers/room.controllers");
+const { addeRoom, myRooms, participate, participateRooms, allRooms } = require("../controllers/room.controllers");
 const { roomVlidation, validation,} = require("../middlewares/roomVlidation");
 const isAuth  = require("../middlewares/isAuth");
 const router = express.Router()
@@ -60,8 +60,8 @@ router.post('/addroom',upload.single('images'),async(req,res)=>{
     }
     
 });
-// post a room
-// router.post("/addroom",isAuth,roomVlidation(), validation,addeRoom,)
+
+router.get("/rooms",allRooms)
 // get my rooms (seller)
 router.get("/myrooms",isAuth,myRooms)
 // participate rooms (buyers)
