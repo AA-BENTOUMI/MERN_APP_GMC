@@ -6,10 +6,10 @@ const roomSchema = new Schema({
     ref: "user",
     required: true,
   },
-  // id_buyer:{
-  //   type: Schema.Types.ObjectId,
-  //   ref: "user",
-  // },
+  id_buyer:{
+    type: Schema.Types.ObjectId,
+    ref: "user",
+  },
   roomName: { type: String, required: true },
   categorie: { type: String, required: true },
   estimation: { type: String, required: true },

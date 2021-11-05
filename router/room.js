@@ -39,7 +39,7 @@ function checkFileType(file, cb){
     cb('Error: Images Only!');
   }
 }
-router.post('/addroom',upload.single('images'),async(req,res)=>{
+router.post('/addroom',isAuth,upload.single('images'),async(req,res)=>{
     try {
         if(req.file == undefined){
            res.send({msg:"choisie une image"})

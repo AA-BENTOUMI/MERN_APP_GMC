@@ -39,8 +39,13 @@ export const currentUser = () => async (dispatch) => {
   }
 };
 export const editUser = (id, user) => async (dispatch) => {
+   const config = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
   try {
-    await axios.put(`/api/user/profile/${id}`, user);
+    await axios.put(`/api/user/profile/${id}`, user,config);
     // dispatch({ type: CURRENT_USER});
     // history.push("/profile");
   } catch (error) {

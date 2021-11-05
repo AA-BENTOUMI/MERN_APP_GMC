@@ -12,6 +12,7 @@ import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const isAuth = useSelector(state => state.userReducer.isAuth)
+    const user = useSelector((state) => state.userReducer.user);
 
   const dispatch = useDispatch();
 const handeleLougout=(e)=>{
@@ -45,15 +46,22 @@ const handeleLougout=(e)=>{
           >
             
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              <li className="flex items-center">
+              {isAuth?<li className="flex items-center">
                 <Link
+              to="/myrooms"
+               className={
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"}
+                > My Rooms
+              </Link>
+              {user&&user.role=="seller"?
+              <Link
               to="/addroom"
                className={
               "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"}
                 > Add Room
-              </Link>
+              </Link>:null}
                 <IndexDropdown />
-              </li>
+              </li>:null}
               
                 {isAuth?
                 <Link to="/auth/login"

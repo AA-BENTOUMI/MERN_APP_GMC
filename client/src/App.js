@@ -5,6 +5,7 @@ import { currentUser } from "./JS/actions/user";
 import { useDispatch } from "react-redux";
 import Admin from "layouts/Admin.js";
 import Auth from "layouts/Auth.js";
+import Footer from "components/Footers/Footer.js";
 
 // views without layouts
 
@@ -16,6 +17,7 @@ import PrivateRoute from "router/PrivateRoute";
 import Navbar from "components/Navbars/IndexNavbar";
 import AddRoom from "views/rooms/AddRoom";
 import RoomsList from "views/rooms/RoomsList";
+import SellerRoute from "router/SellerRoute";
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
@@ -36,12 +38,13 @@ function App() {
       <Route path="/landing"  component={Landing} />
       <PrivateRoute path="/profile"  component={Profile} />
       <PrivateRoute path="/editprofile/:id" component={EditProfile} />
-      <Route path="/addroom"  component={AddRoom} />
-      <Route path="/allrooms"  component={RoomsList} />
+      <SellerRoute path="/addroom"  component={AddRoom} />
+      <PrivateRoute path="/myrooms"  component={RoomsList} />
       <Route path="/" exact component={Index} />
       {/* add redirect for first page */}
       {/* <Redirect from="*" to="/" /> */}
     </Switch>
+      <Footer />
     </div>
   );
 }

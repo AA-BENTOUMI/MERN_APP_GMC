@@ -1,5 +1,5 @@
 import React from 'react'
-import { backgroundImage } from 'tailwindcss/defaultTheme'
+import { Link } from 'react-router-dom'
 import "./RoomCards.css"
 const RoomCards = ({room}) => {
    
@@ -9,7 +9,9 @@ const RoomCards = ({room}) => {
   <li className="booking-card"  style={{backgroundImage: `url(http://localhost:3000/uploads/${room.images}) ` }}>
     <div className="book-container">
       <div className="content">
+        <Link to={{ pathname: `/landing/${room._id}`, state: room }}>
         <button className="btn">Participate</button>
+        </Link>
       </div>
     </div>
     <div className="informations-container">

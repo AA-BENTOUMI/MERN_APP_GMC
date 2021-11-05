@@ -2,15 +2,16 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Footer from "components/Footers/Footer.js";
 import { Link } from "react-router-dom";
+import Spinner from "components/Spinner/Spinner";
 
 export default function Profile() {
-  // const isLoad = useSelector((state) => state.userReducer.isLoad);
+  const isLoad = useSelector((state) => state.userReducer.isLoad);
     const user = useSelector((state) => state.userReducer.user);
-    console.log(user)
 
   return (
     <>
-      { user ?
+    {isLoad?(<Spinner/>):
+       user ?
             (<main className="profile-page">
         <section className="relative block h-500-px">
           <div

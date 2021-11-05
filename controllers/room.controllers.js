@@ -14,7 +14,7 @@ exports.myRooms = async (req, res) => {
   try {
     // find rooms with user id 
     const findRooms = await Room.find({ id_seller: req.user.id }).populate("id_seller");
-    res.send( {msg:"liste des salles",findRooms} );
+    res.send( findRooms );
   } catch (error) {
     res.status(400).send({ msg: "salle non trouvé", error });
   }
@@ -34,7 +34,7 @@ exports.participateRooms = async (req, res) => {
   try {
     // find rooms with user id 
     const findRooms = await Room.find({ id_buyer: req.user.id }).populate("id_buyer");
-    res.send( {msg:"liste des salles",findRooms} );
+    res.send( findRooms);
   } catch (error) {
     res.status(400).send({ msg: "salle non trouvé", error });
   }
