@@ -8,7 +8,7 @@ const SellerRoute = ({ component: Component, ...rest }) => {
   if (token && user.role === "seller") {
     return <Route component={Component} {...rest} />;
   }
-  return <Redirect to="/dashbord" />;
+  return <Redirect to="/" />;
 };
 
 export default SellerRoute;

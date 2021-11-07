@@ -18,8 +18,8 @@ const roomSchema = new Schema({
   date :{type: Date},
  status: {
     type: String,
-    enum: ["en attente", "accepter", "refuser"],
-    default: "en attente",
+    enum: ["waiting", "accepted", "refused"],
+    default: "waiting",
   },
 });
 

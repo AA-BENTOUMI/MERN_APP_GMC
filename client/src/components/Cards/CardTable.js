@@ -12,7 +12,7 @@ export default function CardTable({ color }) {
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
           (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")
-        }
+        } 
       >
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
@@ -28,7 +28,7 @@ export default function CardTable({ color }) {
             </div>
           </div>
         </div>
-        <div className="block w-full overflow-x-auto">
+        <div className="block w-full overflow-x-auto mt-4">
           {/* Projects table */}
           <table className="items-center w-full bg-transparent border-collapse">
             <thead>

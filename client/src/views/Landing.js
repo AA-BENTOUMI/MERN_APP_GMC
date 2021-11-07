@@ -82,13 +82,13 @@ export default function Landing({ location: { state }}) {
                   <p className="text-sm text-blueGray-400 mt-4"><span className="text-emerald-500 mr-2"><i className="fas fa-arrow-up"></i> 3.48%</span><span className="whitespace-nowrap">Since last month</span></p>
                     </li>
                   </ul>
-                   <button
+                  {user&&state.id_buyer!==user._id? <button
               className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               type="button"
               onClick={handleParticipate}
             >
               Participate
-            </button>
+            </button>:null}
                 </div>
               </div>
             </div>

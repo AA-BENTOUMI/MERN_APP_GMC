@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import userReducer from "./user";
 import roomReducer from "./room";
-const rootReducer = combineReducers({ userReducer,roomReducer });
+import adminReducer from "./admin";
+const rootReducer = combineReducers({ userReducer,roomReducer,adminReducer });
 export default rootReducer;
