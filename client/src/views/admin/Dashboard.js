@@ -1,19 +1,32 @@
-import { React, useEffect } from "react";
+import { React, useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
 // components
 import { getRoomsAdmin } from "JS/actions/admin";
-import TableDropdown from "components/Dropdowns/TableDropdown.js";
+// import TableDropdown from "components/Dropdowns/TableDropdown.js";
 import Spinner from "components/Spinner/Spinner";
+import { changeStatus } from "JS/actions/admin";
 
 export default function Dashboard({ color }) {
    const rooms = useSelector((state) => state.adminReducer.rooms);
   const isLoad = useSelector((state) => state.userReducer.isLoad);
+  const [idButton, setIdButton] = useState("")
+  const [status, setStatus] = useState("")
+
     const dispatch = useDispatch();
     useEffect(() => {
     dispatch(getRoomsAdmin());
   }, [dispatch]);
+    const handleId = (e) => {
+      setIdButton(e.target.id);
+      setStatus(e.target.value);
+  };
+  useEffect(() => {
+    if(idButton&&status)
+           { dispatch(changeStatus(idButton,{status}))};
+  }, [status,idButton,dispatch])
+  
   return (
      <>
      {isLoad?(<Spinner/>): null}
@@ -130,7 +143,7 @@ export default function Dashboard({ color }) {
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <div className="flex">
-                    {el.date}
+                    {el._id}
                   </div>
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
@@ -141,7 +154,20 @@ export default function Dashboard({ color }) {
                   </div>
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                  <TableDropdown />
+                 <button id={el._id}
+                onClick={handleId}
+                name="status"
+                value="accept"
+                className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                Accept
+               </button>
+                  <button id={el._id}
+                  onClick={handleId}
+                  name="status"
+                  value="refuse"
+                  className="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                  Refuuse
+                </button>
                 </td>
               </tr>
             </tbody>

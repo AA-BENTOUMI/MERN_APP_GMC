@@ -15,5 +15,5 @@ router.get("/allRooms",getAllRooms)
 // delete room
 router.delete("/deleteRoom/:id",deleteRoom)
 // change room status
-router.put("/changeStatus/:id", ChangeStatus);
+router.put("/changestatus/:id", ChangeStatus);
 module.exports = router
