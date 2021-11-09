@@ -51,20 +51,18 @@ const uploadRoom=(e)=>{
               <div className="card-body media align-items-center">
                 <img src="https://www.suzukijember.com/gallery/gambar_product/default.jpg" alt="" className="d-block ui-w-80"/>
                 <div className="media-body ml-4">
+                    <div className="card-body">
+                    <hr className="border-light m-0"/>
                   <label className="btn btn-outline-primary" >
-                    
-                    <input type="file" className="form-control-file" id="exampleFormControlFile1"
+                    <input type="file"  className="form-control mb-1" id="exampleFormControlFile1"
                     name="images"
                     onChange={handlePhoto}
                     />
                   </label> &nbsp;
-
                   <div className="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
                 </div>
               </div>
-              <hr className="border-light m-0"/>
 
-              <div className="card-body">
                 <div className="form-group">
                   <label className="form-label">Room Name</label>
                   <input type="text" name="roomName" className="form-control mb-1"
@@ -73,9 +71,14 @@ const uploadRoom=(e)=>{
                 </div>
                 <div className="form-group">
                   <label className="form-label">Categorie</label>
-                  <input type="text" name="categorie" className="form-control"
-                  onChange={handleChange}
-                  />
+                <select name="categorie" className="form-control mb-1"  defaultValue=""
+                  onChange={handleChange}>
+                  <option value="">Choose a Categorie</option>
+                  <option value="Antique">Antique object</option>
+                  <option value="Rare">Rare object</option>
+                  <option value="Art">Artistic object</option>
+                  <option value="collection">Collection</option>
+                </select>
                 </div>
                <div className="form-group">
                   <label className="form-label">Estimation</label>
