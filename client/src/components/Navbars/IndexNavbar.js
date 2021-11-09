@@ -20,8 +20,8 @@ const handeleLougout=(e)=>{
 }
   return (
     <>
-      <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
-        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+      <nav style={{	height: "5.125rem"}} className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between navbar-expand-lg bg-white shadow">
+        <div style={{	height: "5.125rem"}}  className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link
               to="/"
@@ -47,6 +47,12 @@ const handeleLougout=(e)=>{
             
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               {isAuth?<li className="flex items-center">
+                 {user&&user.role=="admin"?<Link
+              to="/admin/dashboard"
+               className={
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"}
+                > Dashboard
+              </Link>:null}
                 <Link
               to="/myrooms"
                className={
@@ -64,13 +70,16 @@ const handeleLougout=(e)=>{
               </li>:null}
               
                 {isAuth?
+                <li className="flex items-center">
                 <Link to="/auth/login"
+                style={{marginTop:"10%"}}
                   className="bg-white text-blueGray-700 active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
                   onClick={handeleLougout}
                 >
-                  <i className="fas fa-arrow-alt-circle-down"></i> Logout
-                </Link>:<li className="flex items-center">
+                  <i className="fas fa-sign-out-alt"></i> Logout
+                </Link></li>
+                :<li className="flex items-center">
                 <Link to="/auth/register"
                   className="bg-white text-blueGray-700 active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
@@ -81,7 +90,7 @@ const handeleLougout=(e)=>{
                   className="bg-white text-blueGray-700 active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
                 >
-                  <i className="fas fa-arrow-alt-circle-down"></i> Login
+                  <i className="fas fa-sign-out-alt"></i> Login
                 </Link>
               </li>}
               

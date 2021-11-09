@@ -37,7 +37,7 @@ const uploadRoom=(e)=>{
 }
     return (
          <div className="container light-style flex-grow-1 container-p-y" style={{marginTop: "6%"}}>
-    <div className="card overflow-hidden">
+    <div className="card overflow-hidden" style={{ margin:" 6%"}}>
       <div className="row no-gutters row-bordered row-border-light">
         <div className="col-md-3 pt-0">
           <div className="list-group list-group-flush account-settings-links">
@@ -91,14 +91,13 @@ const uploadRoom=(e)=>{
                   ></textarea>
                 </div>
             </div>          
-            </div>           
+            </div>         
         </div>
+        <div className="text-right mt-3">
+      <button type="button" className="btn btn-primary" onClick={uploadRoom}>Save Room</button>&nbsp;
+      <button type="button" className="btn btn-default">Cancel</button>  
       </div>
     </div>
-
-    <div className="text-right mt-3">
-      <button type="button" className="btn btn-primary" onClick={uploadRoom}>Save Room</button>&nbsp;
-      <button type="button" className="btn btn-default">Cancel</button>
     </div>
 
   </div>   

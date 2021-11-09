@@ -18,8 +18,8 @@ const EditProfile = ({location }) => {
   };
   const history = useHistory();
   const dispatch = useDispatch();
-const handleUser = (e) => {
-    dispatch(editUser(user._id,{...edit}));
+  const handleUser = (e) => {
+    dispatch(editUser(user._id,{...edit}),history);
   }; 
 
     return (

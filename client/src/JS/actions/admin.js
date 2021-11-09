@@ -17,6 +17,7 @@ export const changeStatus = (id,status) => async (dispatch) => {
   };
   try {
     await axios.put(`/api/admin/changestatus/${id}`, status,config);
+    dispatch(getRoomsAdmin())
   } catch (error) {
      dispatch({ type: FAIL_ROOM, payload: error.response.data.errors });
   }

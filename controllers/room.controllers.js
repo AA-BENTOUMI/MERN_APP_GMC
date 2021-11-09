@@ -33,7 +33,7 @@ exports.participate = async (req, res) => {
 exports.participateRooms = async (req, res) => {
   try {
     // find rooms with user id 
-    const findRooms = await Room.find({ id_buyer: req.user.id }).populate("id_buyer");
+    const findRooms = await Room.find({ id_buyer: req.user.id })
     res.send( findRooms);
   } catch (error) {
     res.status(400).send({ msg: "salle non trouvé", error });

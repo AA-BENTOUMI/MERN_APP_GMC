@@ -2,8 +2,8 @@
 import { React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRooms } from "JS/actions/room";
-import RoomCards from "components/RoomCards/RoomCards";
 import Spinner from "components/Spinner/Spinner";
+import IndexCards from "components/RoomCards/IndexCards";
 
 
 export default function Index() {
@@ -66,7 +66,7 @@ export default function Index() {
        <div style={{display:"flex",flexWrap:"wrap",marginTop:"10%"}}>
            {isLoad?(<Spinner/>):
       rooms?
-        (rooms.map((el) => <RoomCards room={el} key={el._id} />)):null
+        (rooms.map((el) => <IndexCards room={el} key={el._id} />)):null
       }
     </div>
     </>

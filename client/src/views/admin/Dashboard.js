@@ -122,7 +122,8 @@ export default function Dashboard({ color }) {
               <tr>
                 <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
                   <img
-                    src={require("assets/img/bootstrap.jpg").default}
+                  src={`http://localhost:3000/uploads/${el.images}`}
+
                     className="h-12 w-12 bg-white rounded-full border"
                     alt="..."
                   ></img>{" "}
@@ -143,12 +144,19 @@ export default function Dashboard({ color }) {
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <div className="flex">
-                    {el._id}
+                    {el.date}
                   </div>
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <div className="flex items-center">
-                   <i className="fas fa-circle text-orange-500 mr-2"></i>  {el.status}
+                   {el.status==="accept"?
+                    <i className="fas fa-circle text-emerald-500 mr-2"></i>:
+                    el.status==="refuse"?
+                    <i className="fas fa-circle text-red-500 mr-2"></i> :
+                    el.status==="waiting"?
+                   <i className="fas fa-circle text-orange-500 mr-2"></i> 
+                    :null}
+                    {el.status}
                     <div className="relative w-full">
                     </div>
                   </div>

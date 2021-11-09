@@ -102,7 +102,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Users Tables
+                   Rooms Tables
                 </Link>
               </li>
               <li className="items-center">
@@ -123,7 +123,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                   Rooms Tables
+                  Users Tables
                 </Link>
               </li>
               <li className="items-center">

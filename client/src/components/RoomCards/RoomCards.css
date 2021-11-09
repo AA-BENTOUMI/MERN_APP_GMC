@@ -4,7 +4,7 @@
   font-family: "Sofia", sans-serif;
 }
 h2 {
-  color: #0a4870;
+  color: #000000;
   font-weight: 500;
 }
 ul {
@@ -147,7 +147,7 @@ ul
   .more-information
   .info-and-date-container
   .box.info {
-  color: #ec992c;
+  color: #000000;
   margin-right: 10px;
 }
 ul .booking-card .informations-container .more-information .disclaimer {

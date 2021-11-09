@@ -18,6 +18,7 @@ import Navbar from "components/Navbars/IndexNavbar";
 import AddRoom from "views/rooms/AddRoom";
 import RoomsList from "views/rooms/RoomsList";
 import SellerRoute from "router/SellerRoute";
+import AdminRouter from "router/AdminRouter";
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
@@ -32,10 +33,10 @@ function App() {
       <Navbar/>
       <Switch>
       {/* add routes with layouts */}
-      <Route path="/admin" component={Admin} />
+      <AdminRouter path="/admin" component={Admin} />
       <Route path="/auth" component={Auth} />
       {/* add routes without layouts */}
-      <Route path="/landing"  component={Landing} />
+      <PrivateRoute path="/landing"  component={Landing} />
       <PrivateRoute path="/profile"  component={Profile} />
       <PrivateRoute path="/editprofile/:id" component={EditProfile} />
       <SellerRoute path="/addroom"  component={AddRoom} />
