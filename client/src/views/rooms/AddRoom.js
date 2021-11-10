@@ -2,6 +2,7 @@ import React, { useState} from "react";
 import { useSelector } from "react-redux";
 import { addRoom } from "../../JS/actions/room";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import  './AddRoom.css'
 const AddRoom = () => {
     const user = useSelector((state) => state.userReducer.user);
@@ -11,9 +12,11 @@ const AddRoom = () => {
       estimation: "",
       description: "",
       images: "",
+      date:"",
       id_seller:""  
   })
   const dispatch = useDispatch();
+  const history = useHistory();
 
  const handleChange = (e) => {
         setNewRoom({...newRoom, [e.target.name]: e.target.value});
@@ -30,9 +33,10 @@ const uploadRoom=(e)=>{
         formData.append('categorie', newRoom.categorie);
         formData.append('estimation', newRoom.estimation);
         formData.append('description', newRoom.description);
+        formData.append('date', newRoom.date);
         formData.append('id_seller', user._id);
         formData.append('images', newRoom.images);
-    dispatch(addRoom(formData));
+    dispatch(addRoom(formData,history));
 
 }
     return (
@@ -58,8 +62,8 @@ const uploadRoom=(e)=>{
                     name="images"
                     onChange={handlePhoto}
                     />
+                    <div className="text-secondary small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
                   </label> &nbsp;
-                  <div className="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
                 </div>
               </div>
 
@@ -80,11 +84,26 @@ const uploadRoom=(e)=>{
                   <option value="collection">Collection</option>
                 </select>
                 </div>
-               <div className="form-group">
                   <label className="form-label">Estimation</label>
-                  <input type="text" name="estimation" className="form-control"
+              <div className="input-group mb-3">
+               <div className="input-group-prepend">
+                 <span className="input-group-text">TND</span>
+              </div>
+                <input type="text" name="estimation" 
+                className="form-control" aria-label="Amount (to the nearest dollar)"
                   onChange={handleChange}
-                  />
+                />
+                  <div className="input-group-append">
+                 <span className="input-group-text">.000</span>
+                </div>
+              </div>
+               <div className="form-group">
+                  <label className="form-label">Start Day</label>
+                   <input type="datetime-local" name="date" className="form-control mb-1"
+                  //  value="2018-06-12T19:30"
+                   min="2021-10-07T00:00" max="2025-06-14T00:00"
+                  onChange={handleChange}
+                   />
                 </div>
               </div>
               <div className="form-group">
@@ -97,8 +116,11 @@ const uploadRoom=(e)=>{
             </div>         
         </div>
         <div className="text-right mt-3">
-      <button type="button" className="btn btn-primary" onClick={uploadRoom}>Save Room</button>&nbsp;
-      <button type="button" className="btn btn-default">Cancel</button>  
+      <button type="button" className="btn btn-primary profile-button" 
+      onClick={uploadRoom}>Save Room</button>&nbsp;
+      <button type="button" className="btn btn-default"onClick={() => {
+      history.goBack();
+      }} >Cancel</button>  
       </div>
     </div>
     </div>

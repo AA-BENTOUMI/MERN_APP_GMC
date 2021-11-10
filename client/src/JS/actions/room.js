@@ -1,7 +1,7 @@
 import axios from "axios";
 import {ADD_ROOM, FAIL_ROOM, LOAD_ROOM ,GET_ALL_ROOMS, GET_MY_ROOMS} from "../constants/room";
 
-export const addRoom = (formData,) => async (dispatch) => {
+export const addRoom = (formData,history) => async (dispatch) => {
   dispatch({ type: LOAD_ROOM });
  const config = {
     headers: {
@@ -10,6 +10,7 @@ export const addRoom = (formData,) => async (dispatch) => {
   };
   try {
     const result = await axios.post("/api/room/addroom", formData,config);
+    history.push("/myrooms");
 
     dispatch({ type: ADD_ROOM, payload: result.data }); //msg , token , user
   } catch (error) {

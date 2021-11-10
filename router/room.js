@@ -50,9 +50,10 @@ router.post('/addroom',isAuth,upload.single('images'),roomVlidation(), validatio
           categorie:req.body.categorie,
           estimation:req.body.estimation,
           description:req.body.description,
+          date:req.body.date,
           images:req.file.filename,
           id_seller:req.body.id_seller,
-        date:new Date()})
+          })
         await newRomm.save()
     res.send({msg:"salle créé avec succ",room:newRomm})}
     } catch (error) {
