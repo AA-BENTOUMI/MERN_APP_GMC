@@ -1,5 +1,7 @@
 import axios from "axios";
 import { FAIL_ROOM, LOAD_ROOM ,GET_ALL_ROOMS, } from "../constants/admin";
+
+//get all rooms for admin to accept or refuse
 export const getRoomsAdmin = () => async (dispatch) => {
   dispatch({ type: LOAD_ROOM });
   try {

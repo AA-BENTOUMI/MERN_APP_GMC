@@ -1,6 +1,7 @@
 import axios from "axios";
 import {ADD_ROOM, FAIL_ROOM, LOAD_ROOM ,GET_ALL_ROOMS, GET_MY_ROOMS} from "../constants/room";
 
+//add new room
 export const addRoom = (formData,history) => async (dispatch) => {
   dispatch({ type: LOAD_ROOM });
  const config = {
@@ -17,6 +18,7 @@ export const addRoom = (formData,history) => async (dispatch) => {
     dispatch({ type: FAIL_ROOM , payload: error.response.data.errors });
   }
 };
+// get all rooms
 export const getRooms = () => async (dispatch) => {
   dispatch({ type: LOAD_ROOM });
   try {
@@ -26,6 +28,7 @@ export const getRooms = () => async (dispatch) => {
     dispatch({ type: FAIL_ROOM });
   }
 };
+// get seller rooms
 export const getMyRooms = () => async (dispatch) => {
   dispatch({ type: LOAD_ROOM });
    const config = {
@@ -40,6 +43,7 @@ export const getMyRooms = () => async (dispatch) => {
         dispatch({ type: FAIL_ROOM });
   }
 };
+//put id user in room
 export const participate = (id,user) => async (dispatch) => {
    const config = {
     headers: {
@@ -52,6 +56,7 @@ export const participate = (id,user) => async (dispatch) => {
      dispatch({ type: FAIL_ROOM, payload: error.response.data.errors });
   }
 }
+// get rooms for buyers
 export const getPartiRooms = () => async (dispatch) => {
   dispatch({ type: LOAD_ROOM });
    const config = {
@@ -66,3 +71,16 @@ export const getPartiRooms = () => async (dispatch) => {
         dispatch({ type: FAIL_ROOM });
   }
 };
+//room start or no
+export const startRoom = (id,room) => async (dispatch) => {
+   const config = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+  try {
+    await axios.put(`/api/room/startroom/${id}`, room,config);
+  } catch (error) {
+     dispatch({ type: FAIL_ROOM, payload: error.response.data.errors });
+  }
+}

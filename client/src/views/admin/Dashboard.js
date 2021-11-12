@@ -140,7 +140,7 @@ export default function Dashboard({ color }) {
                  {el.categorie}
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">                 
-                   {el.estimation} USD
+                   {el.estimation} TND
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <div className="flex">

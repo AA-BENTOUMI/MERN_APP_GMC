@@ -23,7 +23,7 @@ exports.myRooms = async (req, res) => {
 exports.participate = async (req, res) => {
   try { 
     // find rooms with user id and push buyer id
-    let result=await Room.findByIdAndUpdate(req.params.id,{id_buyer:req.user.id}).populate("id_seller id_buyer");
+    let result=await Room.findByIdAndUpdate(req.params.id,{$push:{id_buyer:req.user.id}})
     res.send( {msg:"participer avec succ",result} );
   } catch (error) {
     res.status(400).send({ msg: "échec participation", error });
@@ -39,3 +39,13 @@ exports.participateRooms = async (req, res) => {
     res.status(400).send({ msg: "salle non trouvé", error });
   }
 };
+// room start or with time
+exports.roomIsStart=async(req,res)=>{
+    try {
+  
+    let result=await Room.findByIdAndUpdate(req.params.id,{activated: req.body.activated}); 
+    res.status(200).send({ msg: "Room is ativated", result }); 
+    } catch (error) {
+    res.status(400).send({errors:[{msg:"failed room"}]})
+    }
+}

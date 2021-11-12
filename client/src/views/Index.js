@@ -10,6 +10,7 @@ export default function Index() {
   const rooms = useSelector((state) => state.roomReducer.rooms);
   const isLoad = useSelector((state) => state.userReducer.isLoad);
     const dispatch = useDispatch();
+    // upload all rooms
     useEffect(() => {
     dispatch(getRooms());
   }, [dispatch]);

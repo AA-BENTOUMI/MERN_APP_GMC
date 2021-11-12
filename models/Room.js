@@ -6,20 +6,25 @@ const roomSchema = new Schema({
     ref: "user",
     required: true,
   },
-  id_buyer:{
-    type: Schema.Types.ObjectId,
-    ref: "user",
-  },
+   id_buyer: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+    },
+  ],
   roomName: { type: String, required: true },
   categorie: { type: String, required: true },
   estimation: { type: String, required: true },
   description: { type: String },
   images:{type: String},
   date :{type: Date},
- status: {
+  status: {
     type: String,
     enum: ["waiting", "accept", "refuse"],
     default: "waiting",
+  },
+  activated:{ type: Boolean ,
+    default: false
   },
 });
 

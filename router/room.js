@@ -1,5 +1,5 @@
 const express = require("express");
-const { addeRoom, myRooms, participate, participateRooms, allRooms } = require("../controllers/room.controllers");
+const {  myRooms, participate, participateRooms, allRooms, roomIsStart } = require("../controllers/room.controllers");
 const { roomVlidation, validation,} = require("../middlewares/roomVlidation");
 const isAuth  = require("../middlewares/isAuth");
 const router = express.Router()
@@ -69,5 +69,6 @@ router.get("/myrooms",isAuth,myRooms)
 router.put("/participate/:id",isAuth,participate)
  // get participate rooms
 router.get("/myparticipaterooms",isAuth,participateRooms)
-
+// room is start
+router.put("/startroom/:id",isAuth,roomIsStart)
 module.exports = router

@@ -8,12 +8,11 @@ export default function Login() {
   const [user, setUser] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
   const history = useHistory();
-  // const errors = useSelector((state) => state.userReducer.errors);
 
 const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
-
+// login user function
   const handleUser = () => {
     dispatch(login(user, history));
     setUser({ email: "", password: "" });

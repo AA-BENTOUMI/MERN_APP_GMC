@@ -2,16 +2,29 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { participate } from "JS/actions/room";
 import { useDispatch } from "react-redux";
+import { startRoom } from "JS/actions/room";
 
 // components
-
-
 export default function Landing({ location: { state }}) {
     const user = useSelector((state) => state.userReducer.user);
   const dispatch = useDispatch();
+  //add id user to id object of room schema
   const handleParticipate = () => {
     dispatch(participate(state._id,{...user._id}));
   };
+  let now = new Date();
+  let start=new Date(state.date)
+  //calcul diffrece between two times
+var millisTill10 = start - now;
+console.log(millisTill10)
+if (millisTill10 < 0) {
+   millisTill10 += 86400000; 
+}
+// function dispached after passed time
+setTimeout(function() {
+   alert("activated room")
+    dispatch(startRoom(state._id,{activated:true}));
+}, millisTill10);
   return (
     <>
       <main>
@@ -41,9 +54,10 @@ export default function Landing({ location: { state }}) {
                   src={`http://localhost:3000/uploads/${state.images}`}
                 />
               </div>
-              <div className="text-lightBlue-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-lightBlue-300">
+                <button className="text-lightBlue-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-lightBlue-300">
                     <i className="fas fa-rocket text-xl"></i>
-                  </div>
+                  </button>
+              
               <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
                 <div className="md:pr-12">
                   
@@ -75,7 +89,7 @@ export default function Landing({ location: { state }}) {
                         </div>
                         <div>
                           <h4 className="text-blueGray-500">
-                            Estimation:{state.estimation}
+                            Estimation:{state.estimation}TND
                           </h4>
                         </div>
                       </div>
@@ -96,7 +110,8 @@ export default function Landing({ location: { state }}) {
                   <p className="text-sm text-blueGray-400 mt-4"><span className="text-emerald-500 mr-2"><i className="fas fa-arrow-up"></i> 3.48%</span><span className="whitespace-nowrap">Since last month</span></p>
                     </li>
                   </ul>
-                  {user&&state.id_buyer!==user._id? <button
+                  {/* display only for buyers */}
+                  {user&&(user.role!=="seller")? <button
               className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               type="button"
               onClick={handleParticipate}

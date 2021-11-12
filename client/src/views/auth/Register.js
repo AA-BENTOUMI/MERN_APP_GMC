@@ -11,10 +11,11 @@ export default function Register() {
   });
   const history = useHistory();
   const dispatch = useDispatch();
-  // const errors = useSelector((state) => state.userReducer.errors);
+  
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
+  //register new User function
     const handleUser = (e) => {
     dispatch(register(user, history));
     setUser({

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { CURRENT_USER, FAIL_USER, LOAD_USER, LOGIN_USER,LOGOUT_USER,REGISTER_USER, UPDATE_USER } from "../constants/user";
-
+// register
 export const register = (newUser, history) => async (dispatch) => {
   dispatch({ type: LOAD_USER });
 
@@ -13,6 +13,7 @@ export const register = (newUser, history) => async (dispatch) => {
     dispatch({ type: FAIL_USER, payload: error.response.data.errors });
   }
 };
+//login
 export const login = (user, history,) => async (dispatch) => {
   dispatch({ type: LOAD_USER });
 
@@ -24,6 +25,7 @@ export const login = (user, history,) => async (dispatch) => {
     dispatch({ type: FAIL_USER, payload: error.response.data.errors });
   }
 };
+// current user
 export const currentUser = () => async (dispatch) => {
   dispatch({ type: LOAD_USER });
   const config = {
@@ -38,6 +40,7 @@ export const currentUser = () => async (dispatch) => {
     dispatch({ type: FAIL_USER, payload: error.response.data.errors });
   }
 };
+//edit user informations 
 export const editUser = (id, user,history) => async (dispatch) => {
    const config = {
     headers: {
@@ -53,6 +56,7 @@ export const editUser = (id, user,history) => async (dispatch) => {
      dispatch({ type: FAIL_USER, payload: error.response.data.errors });
   }
 }
+//logout 
 export const logout=()=>{
   return{
     type:LOGOUT_USER

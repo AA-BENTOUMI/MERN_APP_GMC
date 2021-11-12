@@ -17,6 +17,7 @@ const EditProfile = ({location }) => {
     setedit({ ...edit, [e.target.name]: e.target.value });
   };
   const history = useHistory();
+  //dipatch edit funcion
   const dispatch = useDispatch();
   const handleUser = (e) => {
     dispatch(editUser(user._id,{...edit}),history);
