@@ -44,7 +44,7 @@ exports.getAllRooms=async(req,res)=>{
 exports.ChangeStatus=async(req,res)=>{
 try {
   let result=await Room.updateOne( { _id: req.params.id },
-      { $set: { status:req.body.status } });
+      { $set: { status:req.body.status,addsum:req.body.addsum,starting:req.body.starting } });
    res.status(200).send({ msg: "status updated successfully" ,result});
 } catch (error) {
   res.status(400).send({ errors: [{ msg: "can not update this demande", error }] });

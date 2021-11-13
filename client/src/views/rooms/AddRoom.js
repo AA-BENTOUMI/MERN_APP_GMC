@@ -13,7 +13,9 @@ const AddRoom = () => {
       description: "",
       images: "",
       date:"",
-      id_seller:""  
+      id_seller:"",  
+      starting:"", 
+      addsum:""  
   })
   const dispatch = useDispatch();
   const history = useHistory();

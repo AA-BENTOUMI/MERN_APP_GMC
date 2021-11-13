@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { participate } from "JS/actions/room";
 import { useDispatch } from "react-redux";
 import { startRoom } from "JS/actions/room";
+import moment from 'moment'
+import 'moment-precise-range-plugin';
 
 // components
 export default function Landing({ location: { state }}) {
@@ -16,7 +18,8 @@ export default function Landing({ location: { state }}) {
   let start=new Date(state.date)
   //calcul diffrece between two times
 var millisTill10 = start - now;
-console.log(millisTill10)
+var restTime = moment.preciseDiff(start, now);
+console.log(restTime)
 if (millisTill10 < 0) {
    millisTill10 += 86400000; 
 }
@@ -103,7 +106,7 @@ setTimeout(function() {
                         </div>
                         <div>
                           <h4 className="text-blueGray-500">
-                            high proposition
+                            {restTime}
                           </h4>
                         </div>
                       </div>

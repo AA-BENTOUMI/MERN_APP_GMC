@@ -26,6 +26,8 @@ const roomSchema = new Schema({
   activated:{ type: Boolean ,
     default: false
   },
+  starting: { type: String, },
+  addsum: { type: String, },
 });
 
 module.exports = Room = model("room", roomSchema);

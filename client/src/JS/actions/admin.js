@@ -11,14 +11,14 @@ export const getRoomsAdmin = () => async (dispatch) => {
     dispatch({ type: FAIL_ROOM });
   }
 };
-export const changeStatus = (id,status) => async (dispatch) => {
+export const changeStatus = (id,{status,starting,addsum}) => async (dispatch) => {
    const config = {
     headers: {
       authorization: localStorage.getItem("token"),
     },
   };
   try {
-    await axios.put(`/api/admin/changestatus/${id}`, status,config);
+    await axios.put(`/api/admin/changestatus/${id}`, {status,starting,addsum},config);
     dispatch(getRoomsAdmin())
   } catch (error) {
      dispatch({ type: FAIL_ROOM, payload: error.response.data.errors });
