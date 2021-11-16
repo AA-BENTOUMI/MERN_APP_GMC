@@ -9,7 +9,8 @@ try {
  const {password}=req.body     
  const findUser= await User.findOne({email}) 
  if(findUser){
-    return res.status(400).send({errors:[{msg:"This email address is already in use"}]})
+    res.status(400).send({errors:[{msg:"This email address is already in use"}]})
+     return
  }
  const newUser=new User({...req.body})
  const hashedpassword = await bcrypt.hash(password, saltRounds);

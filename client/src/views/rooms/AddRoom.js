@@ -4,8 +4,10 @@ import { addRoom } from "../../JS/actions/room";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import  './AddRoom.css'
+import Notifroom from "components/Notifications/Notifroom";
 const AddRoom = () => {
     const user = useSelector((state) => state.userReducer.user);
+  const errors = useSelector((state) => state.roomReducer.errors);
     const [newRoom, setNewRoom] = useState({
        roomName: "",
       categorie: "",
@@ -15,7 +17,8 @@ const AddRoom = () => {
       date:"",
       id_seller:"",  
       starting:"", 
-      addsum:""  
+      addsum:""  ,
+      last:""
   })
   const dispatch = useDispatch();
   const history = useHistory();
@@ -42,6 +45,10 @@ const uploadRoom=(e)=>{
 
 }
     return (
+    <>
+    {errors && errors
+          ? errors.map((el, i) => <Notifroom error={el} key={i} />)
+          : null}
          <div className="container light-style flex-grow-1 container-p-y" style={{marginTop: "6%"}}>
     <div className="card overflow-hidden" style={{ margin:" 6%"}}>
       <div className="row no-gutters row-bordered row-border-light">
@@ -127,7 +134,8 @@ const uploadRoom=(e)=>{
     </div>
     </div>
 
-  </div>   
+  </div> 
+  </>  
     ) 
 }
 

@@ -1,11 +1,13 @@
 import React, { useState} from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { login } from "../../JS/actions/user";
 import { Link } from "react-router-dom";
 import {  useHistory } from "react-router-dom";
+import Notifications from "components/Notifications/Notifications";
 
 export default function Login() {
   const [user, setUser] = useState({ email: "", password: "" });
+  const errors = useSelector((state) => state.userReducer.errors);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -15,10 +17,12 @@ const handleChange = (e) => {
 // login user function
   const handleUser = () => {
     dispatch(login(user, history));
-    setUser({ email: "", password: "" });
   };
   return (
     <>
+    {errors && errors
+          ? errors.map((el, i) => <Notifications error={el} key={i} />)
+          : null}
       <div className="container mx-auto px-4 h-full">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-4/12 px-4">

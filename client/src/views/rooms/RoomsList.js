@@ -7,10 +7,9 @@ import { getPartiRooms } from "JS/actions/room";
 const RoomsList = () => {
     const user = useSelector((state) => state.userReducer.user);
   const myrooms = useSelector((state) => state.roomReducer.myrooms);
-  const isLoad = useSelector((state) => state.userReducer.isLoad);
+  const isLoad = useSelector((state) => state.roomReducer.isLoad);
     const dispatch = useDispatch();
    useEffect(() => {
-    console.log(user);
     if (user && user.role === "seller") {
       dispatch(getMyRooms());
     } else {

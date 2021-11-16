@@ -5,9 +5,12 @@ import { editUser } from "../../JS/actions/user";
 import {  useHistory } from "react-router-dom";
 
 import "./editProfile.css"
+import Notifications from "components/Notifications/Notifications";
 const EditProfile = ({location }) => {
     // const isLoad = useSelector((state) => state.userReducer.isLoad);
     const user = useSelector((state) => state.userReducer.user);
+  const errors = useSelector((state) => state.userReducer.errors);
+
     const [edit, setedit] = useState({
       phone: "",
       adress: "",
@@ -24,12 +27,16 @@ const EditProfile = ({location }) => {
   }; 
 
     return (
+        <>
+         {errors && errors
+          ? errors.map((el, i) => <Notifications error={el} key={i} />)
+          : null}
         <div>{ user ?
             (
            <div className="container rounded bg-white mt-5">
     <div className="row">
         <div className="col-md-4 border-right">
-            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" src={require("assets/img/team-2-800x800.jpg").default}
+            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" src={require("assets/img/avatarprofile.jpg").default}
  alt="profileImg" width="90"/><span className="font-weight-bold">{user.name}</span><span className="text-black-50">{user.email}</span><span>{user.role}</span></div>
         </div>
         <div className="col-md-8">
@@ -61,9 +68,10 @@ const EditProfile = ({location }) => {
                 <div className="mt-5 text-right">
                     <button className="btn btn-primary profile-button"
                      type="button"
-                onClick={(e) => {
-                 e.preventDefault();
-                handleUser();
+                     onClick={(e) => {
+                         e.preventDefault();
+                         handleUser();
+                         history.goBack();
                       }}
                 >Save Profile</button></div>
             </div>
@@ -73,6 +81,7 @@ const EditProfile = ({location }) => {
       )
             :null}
         </div>
+        </>
     )
 }
 

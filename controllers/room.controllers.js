@@ -49,3 +49,22 @@ exports.roomIsStart=async(req,res)=>{
     res.status(400).send({errors:[{msg:"failed room"}]})
     }
 }
+// change room status
+exports.ChangeDetails=async(req,res)=>{
+try {
+  let result=await Room.updateOne( { _id: req.params.id },
+      { $set: {starting:req.body.starting,last:req.body.last } });
+   res.status(200).send({ msg: "Details updated successfully" ,result});
+} catch (error) {
+  res.status(400).send({ errors: [{ msg: "can not update this Details", error }] });
+}
+}
+//get one room
+exports.getOneRoom=async(req,res)=>{
+try {
+  let result=await Room.findById( { _id: req.params.id },);
+   res.status(200).send({ msg: "successfully" ,result});
+} catch (error) {
+  res.status(400).send({ errors: [{ msg: "room not found", error }] });
+}
+}

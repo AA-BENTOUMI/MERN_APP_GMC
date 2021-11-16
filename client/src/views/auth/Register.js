@@ -1,8 +1,10 @@
 import React, { useState} from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { register } from "../../JS/actions/user";
 import {  useHistory } from "react-router-dom";
+import Notifications from "components/Notifications/Notifications";
 export default function Register() {
+  const errors = useSelector((state) => state.userReducer.errors);
   const [user, setUser] = useState({
      name: "",
       email: "",
@@ -18,16 +20,13 @@ export default function Register() {
   //register new User function
     const handleUser = (e) => {
     dispatch(register(user, history));
-    setUser({
-      name: "",
-      email: "",
-      password: "",
-      role: "",
-    });
   };
 
   return (
     <>
+       {errors && errors
+          ? errors.map((el, i) => <Notifications error={el} key={i} />)
+          : null}
       <div className="container mx-auto px-4 h-full">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-6/12 px-4">
@@ -137,10 +136,6 @@ export default function Register() {
                         <a
                           href="#pablo"
                           className="text-lightBlue-500"
-                          onClick={(e) => {
-                          e.preventDefault();
-                          handleUser();
-                          }}
                         >
                           Privacy Policy
                         </a>

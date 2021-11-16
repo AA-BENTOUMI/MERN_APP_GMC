@@ -1,5 +1,5 @@
 const express = require("express");
-const {  myRooms, participate, participateRooms, allRooms, roomIsStart } = require("../controllers/room.controllers");
+const {  myRooms, participate, participateRooms, allRooms, roomIsStart, ChangeDetails ,getOneRoom} = require("../controllers/room.controllers");
 const { roomVlidation, validation,} = require("../middlewares/roomVlidation");
 const isAuth  = require("../middlewares/isAuth");
 const router = express.Router()
@@ -42,7 +42,7 @@ function checkFileType(file, cb){
 router.post('/addroom',isAuth,upload.single('images'),roomVlidation(), validation,async(req,res)=>{
     try {
         if(req.file == undefined){
-           res.send({msg:"choisie une image"})
+        res.status(400).send({errors:[{msg:"put a picture"}]})
       }
       else{ console.log(req.file)
         const newRomm=new Room({
@@ -55,7 +55,7 @@ router.post('/addroom',isAuth,upload.single('images'),roomVlidation(), validatio
           id_seller:req.body.id_seller,
           })
         await newRomm.save()
-    res.send({msg:"salle créé avec succ",room:newRomm})}
+    res.send({msg:"room is created successfully",room:newRomm})}
     } catch (error) {
            res.send({errors:[{msg:"failed upload"}]}) 
     }
@@ -71,4 +71,8 @@ router.put("/participate/:id",isAuth,participate)
 router.get("/myparticipaterooms",isAuth,participateRooms)
 // room is start
 router.put("/startroom/:id",isAuth,roomIsStart)
+// change room additional details 
+router.put("/details/:id",isAuth, ChangeDetails);
+// change room additional details 
+router.get("/room/:id", getOneRoom);
 module.exports = router

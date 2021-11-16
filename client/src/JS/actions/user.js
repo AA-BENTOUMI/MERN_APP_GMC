@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CURRENT_USER, FAIL_USER, LOAD_USER, LOGIN_USER,LOGOUT_USER,REGISTER_USER, UPDATE_USER } from "../constants/user";
+import { CLEAR_ERRORS, CURRENT_USER, FAIL_USER, LOAD_USER, LOGIN_USER,LOGOUT_USER,REGISTER_USER, UPDATE_USER } from "../constants/user";
 // register
 export const register = (newUser, history) => async (dispatch) => {
   dispatch({ type: LOAD_USER });
@@ -60,5 +60,11 @@ export const editUser = (id, user,history) => async (dispatch) => {
 export const logout=()=>{
   return{
     type:LOGOUT_USER
+  }
+}
+//clear errors 
+export const clearErrors=()=>{
+  return{
+    type:CLEAR_ERRORS
   }
 }
