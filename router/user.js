@@ -10,8 +10,10 @@ router.post("/register" ,registerValidation(), validation,Register)
 router.post("/login",loginValiation(), validation,Login)
 // get
 router.get("/current", isAuth, (req, res) => {
-  res.send({user:req.user});
+  res.send(req.user);
+  console.log(req.user)
 });
+
 
 module.exports = router
 

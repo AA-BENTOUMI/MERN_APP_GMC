@@ -19,7 +19,7 @@ const userReducer=(state=initialState,{type,payload})=>{
         case FAIL_USER:
             return{...state,errors:payload,isLoad:false,}
         case CURRENT_USER:
-           return {...state,isLoad: false, user: payload.user, isAuth: true,errors: [],};
+      return {...state,isLoad: false,user: payload,isAuth: true,errors: [],};
         case UPDATE_USER:
            return {...state,isLoad: false, user: payload.user, isAuth: true,errors: [],};
         case LOGOUT_USER:
