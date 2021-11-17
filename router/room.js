@@ -6,6 +6,8 @@ const router = express.Router()
 const multer  = require('multer')
 const path =require("path");
 const Room = require("../models/Room");
+const isSeller = require("../middlewares/isSeller");
+const isBuyer = require("../middlewares/isBuyer");
 // ********upload rooom image********//
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -39,7 +41,7 @@ function checkFileType(file, cb){
     cb('Error: Images Only!');
   }
 }
-router.post('/addroom',isAuth,upload.single('images'),roomVlidation(), validation,async(req,res)=>{
+router.post('/addroom',isAuth,isSeller,upload.single('images'),roomVlidation(), validation,async(req,res)=>{
     try {
         if(req.file == undefined){
         res.status(400).send({errors:[{msg:"put a picture"}]})
@@ -64,15 +66,15 @@ router.post('/addroom',isAuth,upload.single('images'),roomVlidation(), validatio
 
 router.get("/rooms",allRooms)
 // get my rooms (seller)
-router.get("/myrooms",isAuth,myRooms)
+router.get("/myrooms",isAuth,isSeller,myRooms)
 // participate rooms (buyers)
-router.put("/participate/:id",isAuth,participate)
+router.put("/participate/:id",isAuth,isBuyer,participate)
  // get participate rooms
-router.get("/myparticipaterooms",isAuth,participateRooms)
+router.get("/myparticipaterooms",isAuth,isBuyer,participateRooms)
 // room is start
 router.put("/startroom/:id",isAuth,roomIsStart)
 // change room additional details 
-router.put("/details/:id",isAuth, ChangeDetails);
+router.put("/details/:id",isAuth,ChangeDetails);
 // change room additional details 
-router.get("/room/:id", getOneRoom);
+router.get("/room/:id",isAuth,getOneRoom);
 module.exports = router

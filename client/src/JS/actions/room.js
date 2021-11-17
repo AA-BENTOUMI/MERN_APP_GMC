@@ -25,7 +25,7 @@ export const getRooms = () => async (dispatch) => {
     let result = await axios.get("/api/room/rooms");
     dispatch({ type: GET_ALL_ROOMS, payload: result.data });
   } catch (error) {
-    dispatch({ type: FAIL_ROOM });
+    dispatch({ type: FAIL_ROOM , payload: error.response.data.errors});
   }
 };
 // get seller rooms
@@ -40,7 +40,7 @@ export const getMyRooms = () => async (dispatch) => {
     let result = await axios.get("/api/room/myRooms", config);
     dispatch({ type: GET_MY_ROOMS, payload: result.data });
   } catch (error) {
-        dispatch({ type: FAIL_ROOM });
+        dispatch({ type: FAIL_ROOM, payload: error.response.data.errors });
   }
 };
 //put id user in room
@@ -59,7 +59,7 @@ export const participate = (id,user) => async (dispatch) => {
 // get rooms for buyers
 export const getPartiRooms = () => async (dispatch) => {
   dispatch({ type: LOAD_ROOM });
-   const config = {
+    const config = {
     headers: {
       authorization: localStorage.getItem("token"),
     },

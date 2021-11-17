@@ -14,9 +14,9 @@ exports.getAllSellers = async (req, res) => {
 exports.getAllBuyers = async (req, res) => {
   try {
     const buyersList = await User.find({ role: "buyer" });
-    res.send({ msg: "list vendeurs", buyers: buyersList });
+    res.send({ msg: "buyers list", buyers: buyersList });
   } catch (error) {
-    res.status(400).send({errors:[{msg:"éhec list vendeurs"}]})
+    res.status(400).send({errors:[{msg:"error too fetch buyers"}]})
   }
 }
 // delete user
@@ -25,9 +25,9 @@ exports.deleteUser = async (req, res) => {
     const { id } = req.params;
     // find user with his id and deleted
      await User.deleteOne({ _id: id });
-    res.send({ msg: "suprimer avec succès" });
+    res.send({ msg: "deleted with succ" });
   } catch (error) {
-    res.status(400).send({ msg: "échéc suprimer", error });
+    res.status(400).send({ msg: "failed delete", error });
   }
 };
 // ***********rooms management************//
@@ -37,7 +37,7 @@ exports.getAllRooms=async(req,res)=>{
     const allRooms=await Room.find()
     res.status(200).send(allRooms)
 } catch (error) {
-    res.send({errors:[{msg:"probléme des salles"}]})
+    res.send({errors:[{msg:"error to fetch all rooms"}]})
 }
 }
 // change room status
@@ -56,8 +56,8 @@ exports.deleteRoom = async (req, res) => {
     const { id } = req.params;
     // find romm with  id and deleted
     await Room.deleteOne({ _id: id });
-    res.send({ msg: "salle suprimer " });
+    res.send({ msg: "room is deleted " });
   } catch (error) {
-    res.status(400).send({ msg: "échéc suprimer", error });
+    res.status(400).send({ msg: "failed delete", error });
   }
 };

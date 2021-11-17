@@ -6,7 +6,7 @@ exports.allRooms=async(req,res)=>{
     const allRooms=await Room.find()
     res.status(200).send(allRooms)
 } catch (error) {
-    res.send({errors:[{msg:"probléme des salles"}]})
+    res.send({errors:[{msg:"error fetch rooms"}]})
 }
 }
 // get my Rooms
@@ -16,7 +16,7 @@ exports.myRooms = async (req, res) => {
     const findRooms = await Room.find({ id_seller: req.user.id }).populate("id_seller");
     res.send( findRooms );
   } catch (error) {
-    res.status(400).send({ msg: "salle non trouvé", error });
+    res.status(400).send({ msg: "room not found", error });
   }
 };
 // participate rooms (buyers)
@@ -24,9 +24,9 @@ exports.participate = async (req, res) => {
   try { 
     // find rooms with user id and push buyer id
     let result=await Room.findByIdAndUpdate(req.params.id,{$push:{id_buyer:req.user.id}})
-    res.send( {msg:"participer avec succ",result} );
+    res.send( {msg:"participat with succ",result} );
   } catch (error) {
-    res.status(400).send({ msg: "échec participation", error });
+    res.status(400).send({ msg: "participation is failed", error });
   }
 };
 // get my participate rooms
@@ -36,7 +36,7 @@ exports.participateRooms = async (req, res) => {
     const findRooms = await Room.find({ id_buyer: req.user.id })
     res.send( findRooms);
   } catch (error) {
-    res.status(400).send({ msg: "salle non trouvé", error });
+    res.status(400).send({ msg: "room not found", error });
   }
 };
 // room start or with time

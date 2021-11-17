@@ -26,8 +26,8 @@ export default function Index() {
                 Rocket Bid - Create or participate in an online auction.
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-                Rocket Bid is a free and online site. You allow you to create your 
-                room or participate in an auction with time has been already defined
+                Rocket Bid is a free, online site. You allow to create your 
+                room or participate in an auction with an already defined time.
               </p>
               
             </div>

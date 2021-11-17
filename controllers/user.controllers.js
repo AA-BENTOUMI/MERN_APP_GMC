@@ -23,23 +23,39 @@ try {
 }
 // ***login function****
 exports.Login=async(req,res)=>{
-try {
-   const {email,password}=req.body
-    const findUser= await User.findOne({email}) 
- if(!findUser){
-     res.status(400).send({errors:[{msg:"Incorrect email or password"}]})
-     return;
- }
- const testPassword=bcrypt.compare(password, findUser.password)
- if(!testPassword){
-     res.send({errors:[{msg:"Incorrect email or password"}]})
-     return;
- }
- const token=jwt.sign({
-  _id: findUser._id
-}, process.env.SECRET_KEY, { expiresIn: '1h' });
-  res.send({msg:"Successful connection",user:findUser,token})
-} catch (error) {
-    res.send({errors:[{msg:"failed connection"}]}) 
-}
+ try {
+    // get the req.body
+    const { email, password } = req.body;
+    // seach if the user exist
+    const searchUser = await User.findOne({ email });
+
+    // send an error if he didnt exist
+    if (!searchUser) {
+      res.status(400).send({ errors: [{ msg: "Bad Credential" }] });
+      return;
+    }
+    // check if the send it password is equal to the current Password
+    const hashedpass = searchUser.password;
+    const result = await bcrypt.compare(password, hashedpass);
+
+    if (!result) {
+      res.status(400).send({ errors: [{ msg: "Bad Credential" }] });
+      return;
+    }
+
+    // else create a key
+    const token = jwt.sign(
+      {
+        id: searchUser._id,
+      },
+      process.env.SECRET_KEY,
+      { expiresIn: 60 * 60 }
+    );
+
+    // send the details + a key
+    res.status(200).send({ msg: "auth success", user: searchUser, token });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ errors: [{ msg: "can not get the currentUser" }] });
+  }
 }

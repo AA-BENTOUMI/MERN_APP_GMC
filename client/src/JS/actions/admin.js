@@ -4,11 +4,16 @@ import { FAIL_ROOM, LOAD_ROOM ,GET_ALL_ROOMS, } from "../constants/admin";
 //get all rooms for admin to accept or refuse
 export const getRoomsAdmin = () => async (dispatch) => {
   dispatch({ type: LOAD_ROOM });
+   const config = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
   try {
-    let result = await axios.get("/api/admin/allRooms");
+    let result = await axios.get("/api/admin/allRooms",config);
     dispatch({ type: GET_ALL_ROOMS, payload: result.data });
   } catch (error) {
-    dispatch({ type: FAIL_ROOM });
+    dispatch({ type: FAIL_ROOM , payload: error.response.data.errors});
   }
 };
 export const changeStatus = (id,{status,starting,addsum}) => async (dispatch) => {

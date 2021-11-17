@@ -14,17 +14,17 @@ const roomReducer=(state=initialState,{type,payload})=>{
         case LOAD_ROOM:
             return{...state,isLoad:true}
         case GET_ALL_ROOMS:
-            return { ...state, rooms: payload, isLoad: false };
+            return { ...state, rooms: payload, isLoad: false,errors: [],  };
         case GET_MY_ROOMS:
-            return { ...state, myrooms: payload, isLoad: false };
+            return { ...state, myrooms: payload, isLoad: false,errors: [],  };
         case ADD_ROOM:
             return{...state,isLoad:false,room:payload.room }
         case GET_ONE_ROOMS:
             return { ...state, oneroom: payload, isLoad: false,errors: [], };
         case UPDATE_DETAILS:
-            return { ...state, oneroom: payload, isLoad: false};
+            return { ...state, oneroom: payload, isLoad: false,errors: [], };
         case FAIL_ROOM:
-            return{...state,errors:payload,isLoad:false}
+            return{...state,errors:payload,isLoad:false, }
         case CLEAR_ERRORS:
            return {...state,errors:null};
       
