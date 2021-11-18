@@ -1,60 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { sendMail } from 'JS/actions/user';
+import { useDispatch } from "react-redux";
 
 const Contact = () => {
+    const [contact, setContact] = useState({
+      name: "",
+      email: "",
+      message: "",
+  })
+  const dispatch = useDispatch();
+
+   const handleChange = (e) => {
+    setContact({ ...contact, [e.target.name]: e.target.value });
+  };
+   const handeleContact = (e) => {
+    dispatch(sendMail(contact));
+  };
     return (
         <div>
             
           <div className="container mx-auto px-4 lg:pt-24 lg:pb-64">
-            <div className="flex flex-wrap text-center justify-center">
-              <div className="w-full lg:w-6/12 px-4">
-                <h2 className="text-4xl font-semibold text-white">
-                  Build something
-                </h2>
-                <p className="text-lg leading-relaxed mt-4 mb-4 text-blueGray-400">
-                  Put the potentially record low maximum sea ice extent tihs
-                  year down to low ice. According to the National Oceanic and
-                  Atmospheric Administration, Ted, Scambos.
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-wrap mt-12 justify-center">
-              <div className="w-full lg:w-3/12 px-4 text-center">
-                <div className="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
-                  <i className="fas fa-medal text-xl"></i>
-                </div>
-                <h6 className="text-xl mt-5 font-semibold text-white">
-                  Excelent Services
-                </h6>
-                <p className="mt-2 mb-4 text-blueGray-400">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-              </div>
-              <div className="w-full lg:w-3/12 px-4 text-center">
-                <div className="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
-                  <i className="fas fa-poll text-xl"></i>
-                </div>
-                <h5 className="text-xl mt-5 font-semibold text-white">
-                  Grow your market
-                </h5>
-                <p className="mt-2 mb-4 text-blueGray-400">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-              </div>
-              <div className="w-full lg:w-3/12 px-4 text-center">
-                <div className="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
-                  <i className="fas fa-lightbulb text-xl"></i>
-                </div>
-                <h5 className="text-xl mt-5 font-semibold text-white">
-                  Launch time
-                </h5>
-                <p className="mt-2 mb-4 text-blueGray-400">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-              </div>
-            </div>
           </div>
           <section className="relative block py-24 lg:pt-0 bg-blueGray-800">
           <div className="container mx-auto px-4">
@@ -63,7 +28,7 @@ const Contact = () => {
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200">
                   <div className="flex-auto p-5 lg:p-10">
                     <h4 className="text-2xl font-semibold">
-                      Want to work with us?
+                      Contact Us
                     </h4>
                     <p className="leading-relaxed mt-1 mb-4 text-blueGray-500">
                       Complete this form and we will get back to you in 24
@@ -78,8 +43,9 @@ const Contact = () => {
                       </label>
                       <input
                         type="text"
+                        name="name"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Full Name"
+                        onChange={handleChange}
                       />
                     </div>
 
@@ -92,8 +58,9 @@ const Contact = () => {
                       </label>
                       <input
                         type="email"
+                        name="email"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Email"
+                        onChange={handleChange}
                       />
                     </div>
 
@@ -107,14 +74,20 @@ const Contact = () => {
                       <textarea
                         rows="4"
                         cols="80"
+                        name="message"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                         placeholder="Type a message..."
+                        onChange={handleChange}
                       />
                     </div>
                     <div className="text-center mt-6">
                       <button
                         className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         type="button"
+                         onClick={(e) => {
+                         e.preventDefault();
+                         handeleContact();
+                      }}
                       >
                         Send Message
                       </button>

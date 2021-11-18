@@ -5,7 +5,7 @@ const User = require("../models/User");
 exports.getAllSellers = async (req, res) => {
   try {
     const sellersList = await User.find({ role: "seller" });
-    res.send({ msg: "list acheteurs", sellers: sellersList });
+    res.send({  sellers: sellersList });
   } catch (error) {
     res.status(400).send({errors:[{msg:"éhec list acheteures"}]})
   }
@@ -14,9 +14,9 @@ exports.getAllSellers = async (req, res) => {
 exports.getAllBuyers = async (req, res) => {
   try {
     const buyersList = await User.find({ role: "buyer" });
-    res.send({ msg: "buyers list", buyers: buyersList });
+    res.send({buyers: buyersList });
   } catch (error) {
-    res.status(400).send({errors:[{msg:"error too fetch buyers"}]})
+    res.status(400).send({errors:[{msg:"error to fetch buyers"}]})
   }
 }
 // delete user

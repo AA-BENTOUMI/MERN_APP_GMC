@@ -271,7 +271,7 @@ const [starting, setStarting] = useState("")
                  {el.categorie}
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">                 
-                   {el.estimation} TND
+                   {el.estimation} $
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <div className="flex">

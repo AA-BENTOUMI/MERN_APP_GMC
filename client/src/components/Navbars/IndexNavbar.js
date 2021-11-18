@@ -1,8 +1,7 @@
 /*eslint-disable*/
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector ,useDispatch} from "react-redux";
 import { logout } from "../../JS/actions/user";
 
 // components
@@ -46,6 +45,14 @@ const handeleLougout=(e)=>{
           >
             
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+              <li className="flex items-center">
+                 <Link
+              to="/contact"
+               className={
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"}
+                > Contact Us
+              </Link>
+              </li>
               {isAuth?<li className="flex items-center">
                  {user&&user.role=="admin"?<Link
               to="/admin/dashboard"
@@ -79,7 +86,9 @@ const handeleLougout=(e)=>{
                 >
                   <i className="fas fa-sign-out-alt"></i> Logout
                 </Link></li>
-                :<li className="flex items-center">
+                
+                :<div style={{marginTop:"4%"}}>
+                  <li  className="flex items-center" >
                 <Link to="/auth/register"
                   className="bg-white text-blueGray-700 active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
@@ -92,7 +101,7 @@ const handeleLougout=(e)=>{
                 >
                   <i className="fas fa-sign-out-alt"></i> Login
                 </Link>
-              </li>}
+              </li></div>}
               
             </ul>
           </div>

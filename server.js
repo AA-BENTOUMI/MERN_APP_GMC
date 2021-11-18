@@ -13,6 +13,7 @@ app.use("/api/user", require("./router/user"))
 app.use("/api/user", require("./router/userProfile"))
 app.use("/api/admin", require("./router/admin"))
 app.use("/api/room", require("./router/room"))
+app.use("/api/mail", require("./router/mailing"))
 //***************************** */
 const PORT = process.env.PORT;
 app.listen(PORT, (err) =>

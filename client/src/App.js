@@ -19,6 +19,7 @@ import AddRoom from "views/rooms/AddRoom";
 import RoomsList from "views/rooms/RoomsList";
 import SellerRoute from "router/SellerRoute";
 import AdminRouter from "router/AdminRouter";
+import Contact from "views/contact/Contact";
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
@@ -41,6 +42,7 @@ function App() {
       <PrivateRoute path="/editprofile/:id" component={EditProfile} />
       <SellerRoute path="/addroom"  component={AddRoom} />
       <PrivateRoute path="/myrooms"  component={RoomsList} />
+      <Route path="/contact" component={Contact} />
       <Route path="/" exact component={Index} />
       {/* add redirect for first page */}
       {/* <Redirect from="*" to="/" /> */}

@@ -13,8 +13,6 @@ export default function Landing({ location: { state }}) {
   const user = useSelector((state) => state.userReducer.user);
   const isLoad = useSelector((state) => state.roomReducer.isLoad);
 
-  // if (room)console.log(room.result)
-  if (room)console.log(room.result)
     const [total, setTotal] = useState()
     const [clickName, setClickName] = useState()
   const dispatch = useDispatch();
@@ -24,15 +22,12 @@ export default function Landing({ location: { state }}) {
   };
   useEffect(() => {
      if(user){setClickName(user.name)}
-    // return null
   }, [user]);
   useEffect(() => {
     if(room){setTotal(room.result.starting)}
-    // return null
   }, [room]);
   useEffect(() => {
     dispatch(oneRoom(state._id));
-    // return null
   }, [state._id,dispatch,total]);
     
     const handeleTotal=(e)=>{
@@ -43,7 +38,6 @@ export default function Landing({ location: { state }}) {
   //calcul diffrece between two times
 var millisTill10 = start - now;
 var restTime = moment.preciseDiff(start, now);
-// console.log(restTime)
 if (millisTill10 < 0) {
    millisTill10 += 86400000; 
 }

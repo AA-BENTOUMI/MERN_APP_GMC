@@ -10,8 +10,8 @@ const router = express.Router()
 router.get("/allsellers",getAllSellers)
 router.get("/allbuyers",getAllBuyers)
 //delete user
-router.delete("/allsellers/:id",deleteUser)
-router.delete("/allbuyers/:id",deleteUser)
+router.delete("/deleteUser/:id",deleteUser)
+// router.delete("/allbuyers/:id",deleteUser)
 // get all rooms
 router.get("/allRooms",isAuth,isAdmin,getAllRooms)
 // delete room

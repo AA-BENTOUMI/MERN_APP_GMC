@@ -68,3 +68,11 @@ export const clearErrors=()=>{
     type:CLEAR_ERRORS
   }
 }
+// mail contact action
+export const sendMail = (contact) => async (dispatch) => {
+  try {
+     await axios.post("/api/mail/send", contact);
+  } catch (error) {
+    dispatch({ error });
+  }
+};

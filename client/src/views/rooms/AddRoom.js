@@ -96,7 +96,7 @@ const uploadRoom=(e)=>{
                   <label className="form-label">Estimation</label>
               <div className="input-group mb-3">
                <div className="input-group-prepend">
-                 <span className="input-group-text">TND</span>
+                 <span className="input-group-text">$</span>
               </div>
                 <input type="text" name="estimation" 
                 className="form-control" aria-label="Amount (to the nearest dollar)"
