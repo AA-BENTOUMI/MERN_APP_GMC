@@ -22,7 +22,7 @@ export const login = (user, history,) => async (dispatch) => {
     dispatch({ type: LOGIN_USER, payload: result.data }); //msg /token , user
     history.push("/");
   } catch (error) {
-    dispatch({ type: FAIL_USER, payload: error.response.data.errors });
+    dispatch({ type: LOAD_USER, payload: error.response.data.errors });
   }
 };
 // current user

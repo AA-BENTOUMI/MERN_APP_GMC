@@ -1,8 +1,10 @@
 const express = require("express");
 const connectDB = require("./config/connectDB");
 require("dotenv").config();
+var cors = require('cors')
 //*** middleware global
 const app = express();
+app.use(cors())
 app.use(express.json())
 app.use('/uploads', express.static('uploads'));
 //**** connect DB

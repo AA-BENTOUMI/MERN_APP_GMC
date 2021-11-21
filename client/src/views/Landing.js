@@ -6,15 +6,26 @@ import { Details } from "JS/actions/room";
 import moment from 'moment'
 import 'moment-precise-range-plugin';
 import { oneRoom } from "JS/actions/room";
+ import Pusher from 'pusher-js';
 
 // components
 export default function Landing({ location: { state }}) {
   const room = useSelector((state) => state.roomReducer.oneroom);
   const user = useSelector((state) => state.userReducer.user);
   const isLoad = useSelector((state) => state.roomReducer.isLoad);
+  const [clickName, setClickName] = useState()
+  const [total, setTotal] = useState()
+  const [pusherRoom, setPusherRoom] = useState("")
+  // Pusher.logToConsole = true;
+  var pusher = new Pusher('dad7bd945923df62c464', {
+      cluster: 'eu'
+    });
 
-    const [total, setTotal] = useState()
-    const [clickName, setClickName] = useState()
+    var channel = pusher.subscribe('my-click');
+    channel.bind('my-update', function(data) {
+      setPusherRoom(data.result);
+      // console.log(data.result)
+    });
   const dispatch = useDispatch();
   //add id user to id object of room schema
   const handleParticipate = () => {
@@ -29,8 +40,8 @@ export default function Landing({ location: { state }}) {
   useEffect(() => {
     dispatch(oneRoom(state._id));
   }, [state._id,dispatch,total]);
-    
-    const handeleTotal=(e)=>{
+  
+  const handeleTotal=(e)=>{
     dispatch(Details(state._id,{starting:room.result.starting+room.result.addsum,last:clickName}));
   }
   let now = new Date();
@@ -56,13 +67,13 @@ setTimeout(function() {
                   // target="_blank"
                   className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
                 >
-                  {room.result.starting}$
+                  {!pusherRoom?room.result.starting:pusherRoom.starting}$
                 </div>
                 <div
                   className="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
                   // target="_blank"
                 >
-                  {room.result.last}
+                  {!pusherRoom?room.result.last:pusherRoom.last}
                 </div>
               </div>:null}
             <div className="items-center flex flex-wrap">
@@ -70,7 +81,7 @@ setTimeout(function() {
                 <img
                   alt="..."
                   className="max-w-full rounded-lg shadow-lg"
-                  src={`http://localhost:3000/uploads/${state.images}`}
+                  src={`${state.images}`}
                 />
               </div>
               {room&&room.result.activated?<div>{!isLoad?<button 
@@ -78,7 +89,7 @@ setTimeout(function() {
                 onClick={handeleTotal}
                 >
                     <i className="fas fa-rocket text-xl"></i>
-                  </button>:null}  </div>:null}
+                  </button>:null}</div>:null}
               
               <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
                 <div className="md:pr-12">

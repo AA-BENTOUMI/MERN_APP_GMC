@@ -20,8 +20,8 @@ router.post('/send', (req, res) => {
   const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "amenbentoumi@gmail.com",
-          pass: "amen24256186",
+          user: process.env.NODEMAILER_USER,
+          pass: process.env.NODEMAILER_PASS
         },
         tls: {
           rejectUnauthorized: false,

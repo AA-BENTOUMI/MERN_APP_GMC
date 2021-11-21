@@ -8,14 +8,21 @@ const path =require("path");
 const Room = require("../models/Room");
 const isSeller = require("../middlewares/isSeller");
 const isBuyer = require("../middlewares/isBuyer");
+var cloudinary = require('cloudinary').v2;
+cloudinary.config({ 
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true
+});
 // ********upload rooom image********//
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, './uploads/')
-    },
-   filename: function(req, file, cb){
-    cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-  }
+  //   destination: function (req, file, cb) {
+  //     cb(null, './uploads/')
+  //   },
+  //  filename: function(req, file, cb){
+  //   cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  // }
 });
 // Init Upload
 const upload = multer({
@@ -46,17 +53,19 @@ router.post('/addroom',isAuth,isSeller,upload.single('images'),roomVlidation(), 
         if(req.file == undefined){
         res.status(400).send({errors:[{msg:"put a picture"}]})
       }
-      else{ console.log(req.file)
+      else{ 
+        const result = await cloudinary.uploader.upload(req.file.path);
         const newRomm=new Room({
           roomName:req.body.roomName,
           categorie:req.body.categorie,
           estimation:req.body.estimation,
           description:req.body.description,
           date:req.body.date,
-          images:req.file.filename,
+          images:result.secure_url,
+          cloudinary_id: result.public_id,
           id_seller:req.body.id_seller,
           })
-        await newRomm.save()
+      if (result) { await newRomm.save()}
     res.send({msg:"room is created successfully",room:newRomm})}
     } catch (error) {
            res.send({errors:[{msg:"failed upload"}]}) 

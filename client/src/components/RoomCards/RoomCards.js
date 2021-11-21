@@ -8,7 +8,7 @@ const RoomCards = ({room}) => {
     return (
 <div>
 	<ul>
-  <li className="booking-card"  style={{backgroundImage: `url(http://localhost:3000/uploads/${room.images}) ` }}>
+  <li className="booking-card"  style={{backgroundImage: `url(${room.images}) ` }}>
     <div className="book-container">
       <div className="content">
         <Link to={{ pathname: `/landing/${room._id}`, state: room }}>

@@ -1,4 +1,12 @@
 const Room=require("../models/Room")
+const Pusher = require("pusher");
+const pusher = new Pusher({
+  appId: "1300047",
+  key: "dad7bd945923df62c464",
+  secret: "f58bb8ed7766c838c604",
+  cluster: "eu",
+  useTLS: true,
+});
 
 // get all Rooms
 exports.allRooms=async(req,res)=>{
@@ -52,9 +60,11 @@ exports.roomIsStart=async(req,res)=>{
 // change room status
 exports.ChangeDetails=async(req,res)=>{
 try {
-  let result=await Room.updateOne( { _id: req.params.id },
-      { $set: {starting:req.body.starting,last:req.body.last } });
-   res.status(200).send({ msg: "Details updated successfully" ,result});
+  let result=await Room.findByIdAndUpdate( req.params.id , {starting:req.body.starting,last:req.body.last } );
+ pusher.trigger("my-click", "my-update", {
+  result:result
+});
+  res.status(200).send({ msg: "Details updated successfully" ,result});
 } catch (error) {
   res.status(400).send({ errors: [{ msg: "can not update this Details", error }] });
 }

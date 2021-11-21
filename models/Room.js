@@ -17,6 +17,7 @@ const roomSchema = new Schema({
   estimation: { type: String, required: true },
   description: { type: String },
   images:{type: String},
+  cloudinary_id:{type: String},
   date :{type: Date},
   status: {
     type: String,
